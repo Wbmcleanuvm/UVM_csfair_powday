@@ -1,6 +1,6 @@
 <?php
 // Open the CSV file in append mode
-$csv = fopen("demo.csv", "a");
+$csv = fopen("review.csv", "a");
 // Define the row to be appended
 $row = ["A", "B"];
 // Append the row to the CSV file
