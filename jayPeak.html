@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jay Peak</title>
 
+    <link rel="stylesheet" href="powdayCSS.css">
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin=""/>
@@ -19,9 +21,30 @@
         h1 {
             text-align: center;
         }
+
+        .navbar {
+            display: flex;
+            background-color: rgb(0, 113, 85);
+        }
+
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <a href="jayPeak.html">Jay Peak</a>
+        <a href="boltonValley.html">Bolton Valley</a>
+        <a href="sugarBush.html">SugarBush</a>
+        <a href="smugglersNotch.html">SmugglersNotch</a>
+        <a href="reviewForm.html">Review</a>
+        <a href="index.html">Home</a>
+    </div>
+
     <header>
         <h1>
             Jay Peak
@@ -38,7 +61,10 @@
                 attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
             }).addTo(map);;   
 
-     
+            // let pixelBounds = L.getPixelWorldBounds(1.5);
+            // let pxBounds = document.getElementById("pxBounds");
+
+            // pxBounds.innerText = pixelBounds;
 
             // L.tileLayer('TrailMaps/jaypeakMap.jpg', {
             //     maxZoom: 19,
@@ -46,5 +72,9 @@
             //     }).addTo(map);
         </script>
     </div>
+
+    <!-- <h2 id="pxBounds">
+        Pixel Bounds
+    </h2> -->
 </body>
 </html>
