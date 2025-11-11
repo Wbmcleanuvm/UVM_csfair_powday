@@ -1,15 +1,19 @@
 <?php
 
-$name = "name";
+$name = $_POST['fname'];
+$rating = $_POST['score'];
+$mnt = $_POST['mnt'];
+
 // Open the CSV file in append mode
 $csv = fopen("review.csv", "a");
 // Define the row to be appended
-$row = [$name, "var"];
+$row = [$name, $rating, $mnt];
 // Append the row to the CSV file
 fputcsv($csv, $row, escape: "");
 // Close the CSV file
 fclose($csv);
+
 //extension.phpServer.reloadServer
-//PHP Server: Stop project
+// CTRL + SHFT + P:   PHP Server: Stop project
 ?>
 

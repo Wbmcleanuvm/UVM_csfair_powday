@@ -7,10 +7,29 @@
 </head>
 <body>
     <h1>Review Form</h1>
-    <form id="userReview" action="append.php" method="post">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
-        <input type="submit" value="Submit Review">
+    <form method="POST" action="append.php">
+    Name:<input type="text" name="fname">
+
+    Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
+    <p>Rating: <output id="value"></output></p>
+
+    <script>
+        const value = document.querySelector("#value");
+        const input = document.querySelector("#input");
+        value.textContent = input.value;
+        input.addEventListener("input", (event) => {
+        value.textContent = event.target.value;
+        });
+    </script>
+
+    <label for="Mnt">Choose a mountain:</label>
+    <select name="mnt" id="Mnt">
+    <option value= SugarBush>SugarBush</option>
+    <option value= BoltonValley >Bolton Valley</option>
+    <option value=JayPeak > Jay Peak</option>
+    <option value=SmugglersNotch>Smugglers Notch</option>
+  </select>
+    <input type="submit">
     </form>
 
 
