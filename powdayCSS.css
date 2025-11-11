@@ -9,7 +9,7 @@ body {
 
 .navbar a {
     color: white;
-    padding: 14px 20px;
+    padding: 20px 20px;
     text-decoration: none;
     text-align: center;
     transition: transform .25s ease-in-out;
@@ -18,4 +18,21 @@ body {
 .navbar a:hover {
     transform: scale(1.075);
     background-color:rgb(2, 139, 105);
+}
+
+.infoBox {
+    display: flex;
+    align-content: flex-start;
+    
+    border-radius: 25px;
+    margin: 10px 0px;
+    background-color: rgb(255, 209, 00);
+    width: 50vw;
+    height: 50vh;
+}
+
+.infoBox-Item {
+    padding: 5px;
+    margin: 30px 5px;
+    font-size: clamp(.05rem, 5vw, 1rem);
 }
