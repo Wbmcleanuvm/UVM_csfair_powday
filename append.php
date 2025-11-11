@@ -9,4 +9,7 @@ $row = [$name, "var"];
 fputcsv($csv, $row, escape: "");
 // Close the CSV file
 fclose($csv);
+//extension.phpServer.reloadServer
+//PHP Server: Stop project
 ?>
+
