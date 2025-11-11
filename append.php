@@ -4,7 +4,7 @@ $csv = fopen("review.csv", "a");
 // Define the row to be appended
 $row = ["A", "B"];
 // Append the row to the CSV file
-fputcsv($csv, $row);
+fputcsv($csv, $row, escape: "");
 // Close the CSV file
 fclose($csv);
 ?>
