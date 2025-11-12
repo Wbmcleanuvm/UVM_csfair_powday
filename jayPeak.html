@@ -16,7 +16,7 @@
         crossorigin=""></script>
 
     <style>
-        #map { height: 750px; width: 750px; left: 25%;}
+        #map { height: 800px; width: 1000px; background-color: rgb(134, 168, 214); justify-self: center;}
 
         h1 {
             text-align: center;
@@ -41,28 +41,28 @@
 
     <div id="map">
         <script>
-            var map = L.map('map').setView([0, 0], 1.5); // setView([latitude, longitude], zoomLevel)
-            var bounds = [[-90,-180], [90, 180]]; // [[southWestLat, southWestLng], [northEastLat, northEastLng]]
+            const map = L.map('map', {
+                crs: L.CRS.Simple,
+                minZoom: -1,
+                maxZoom: 4
+            }); 
+            const bounds = [[0, 0], [1354, 2000]]; // [[0, 0], [height, width]]
 
-            L.imageOverlay('TrailMaps/jaypeakMap.jpg', bounds, {
-                maxZoom: 19,
+            const mOverlay = L.imageOverlay('TrailMaps/jaypeakMap.jpg', bounds, {
                 attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
             }).addTo(map);;   
 
-            // let pixelBounds = L.getPixelWorldBounds(1.5);
-            // let pxBounds = document.getElementById("pxBounds");
+            map.fitBounds(bounds);
+            map.setMaxBounds(bounds);
 
-            // pxBounds.innerText = pixelBounds;
+            let closed = false;
 
-            // L.tileLayer('TrailMaps/jaypeakMap.jpg', {
-            //     maxZoom: 19,
-            //     attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
-            //     }).addTo(map);
+            if (closed) {
+                L.rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(map);
+                const marker = L.marker([bounds[1][0] / 2, bounds[1][1] / 2]).addTo(map);
+                marker.bindTooltip("Mountain Closed").openTooltip();
+            }
         </script>
     </div>
-
-    <!-- <h2 id="pxBounds">
-        Pixel Bounds
-    </h2> -->
 </body>
 </html>
