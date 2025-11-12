@@ -2,10 +2,10 @@
 
 $name = $_POST['fname'];
 $rating = $_POST['score'];
-$mnt = $_POST['mnt'];
+$mnt = $filename = $_POST['mnt'];
 
 // Open the CSV file in append mode
-$csv = fopen("review.csv", "a");
+$csv = fopen("{$filename}review.csv", "a");
 // Define the row to be appended
 $row = [$name, $rating, $mnt];
 // Append the row to the CSV file
