@@ -1,86 +1,86 @@
 Trail, Status, Difficulty
-Chalet Meadow,Closed,Begginer
-Deer Run,Closed,Begginer
-Grammy Jay,Closed,Begginer
-Harmony Lane,Closed,Begginer
-Interstate,Closed,Begginer
-Kangaroo Trail,Closed,Begginer
-Lower Can Am,Closed,Begginer
-Lower Ullr's Dream,Closed,Begginer
-Perry Merril Ave,Closed,Begginer
-Progression Terrain,Closed,Begginer
-Queen's Highway,Closed,Begginer
-Rabbit Trail,Closed,Begginer
-Raccoon Run,Closed,Begginer
-Subway,Closed,Begginer
-The Boulevard,Closed,Begginer
-Alligator Alley,Closed,Intermediate
-Angel's Wiggle,Closed,Intermediate
-Cat Walk,Closed,Intermediate
-Heaven's Road,Closed,Intermediate
-Hell's Crossing,Closed,Intermediate
-Kokomo,Closed,Intermediate
-Lower Exhibition,Closed,Intermediate
-Lower Goat Run,Closed,Intermediate
-Lower Milk Run,Closed,Intermediate
-Lower River Quai,Closed,Intermediate
-Lower U.N.,Closed,Intermediate
-Micky,Closed,Intermediate
-Middle Can Am,Closed,Intermediate
-Middle Northway,Closed,Intermediate
-Mont L'Entrepide,Closed,Intermediate
-Montrealer,Closed,Intermediate
-Paradise Meadows,Closed,Intermediate
-Poma Line,Closed,Intermediate
-Purgatory,Closed,Intermediate
-Racer,Closed,Intermediate
-St. George's Prayer,Closed,Intermediate
-Sweetheart,Closed,Intermediate
-Taxi,Closed,Intermediate
-The Flash,Closed,Intermediate
-The Jet Lower,Closed,Intermediate
-The Willard,Closed,Intermediate
-Ullr's Dream,Closed,Intermediate
-Upper Northway,Closed,Intermediate
-Vermonter,Closed,Intermediate
-Wedelmaster,Closed,Intermediate
-601,Closed,Advanced
-Green Beret,Closed,Advanced
-Green Mountain Boys,Closed,Advanced
-Haynes,Closed,Advanced
-Hotshot Derick,Closed,Advanced
-JFK,Closed,Advanced
-Kitzbuehel,Closed,Advanced
-Lift Line,Closed,Advanced
-Lower Northway,Closed,Advanced
-Lower Northwest Passage,Closed,Advanced
-Middle Northwest Passage,Closed,Advanced
-Sis Boom Bah,Closed,Advanced
-The Jet,Closed,Advanced
-Upper Can Am,Closed,Advanced
-Upper Exhibition,Closed,Advanced
-Upper Goat Run,Closed,Advanced
-Upper Milk Run,Closed,Advanced
-Upper Northwest Passage,Closed,Advanced
-Upper River Quai,Closed,Advanced
-Upper U.N,Closed,Advanced
-Andre's Paradise,Closed,Advanced Glade
-Beaver Pond,Closed,Advanced Glade
-Bonaventure Glade,Closed,Advanced Glade
-Buck Woods,Closed,Advanced Glade
-Buckaroo Bonzai,Closed,Advanced Glade
-Canyon Land,Closed,Advanced Glade
-Deliverance,Closed,Advanced Glade
-Everglade,Closed,Advanced Glade
-Expo Glade,Closed,Advanced Glade
-Hell's Woods,Closed,Advanced Glade
-Kitz Woods,Closed,Advanced Glade
-North Glade,Closed,Advanced Glade
-Show-Off Glade,Closed,Advanced Glade
-Staircase,Closed,Advanced Glade
-Stateside Glade,Closed,Advanced Glade
-The Face Chutes,Closed,Advanced Glade
-Timbuktu,Closed,Advanced Glade
-Tuckerman's Chute,Closed,Advanced Glade
-Valhalla,Closed,Advanced Glade
-Vertigo,Closed,Advanced Glade
+Chalet Meadow,false,Begginer
+Deer Run,false,Begginer
+Grammy Jay,false,Begginer
+Harmony Lane,false,Begginer
+Interstate,false,Begginer
+Kangaroo Trail,false,Begginer
+Lower Can Am,false,Begginer
+Lower Ullr's Dream,false,Begginer
+Perry Merril Ave,false,Begginer
+Progression Terrain,false,Begginer
+Queen's Highway,false,Begginer
+Rabbit Trail,false,Begginer
+Raccoon Run,false,Begginer
+Subway,false,Begginer
+The Boulevard,false,Begginer
+Alligator Alley,false,Intermediate
+Angel's Wiggle,false,Intermediate
+Cat Walk,false,Intermediate
+Heaven's Road,false,Intermediate
+Hell's Crossing,false,Intermediate
+Kokomo,false,Intermediate
+Lower Exhibition,false,Intermediate
+Lower Goat Run,false,Intermediate
+Lower Milk Run,false,Intermediate
+Lower River Quai,false,Intermediate
+Lower U.N.,false,Intermediate
+Micky,false,Intermediate
+Middle Can Am,false,Intermediate
+Middle Northway,false,Intermediate
+Mont L'Entrepide,false,Intermediate
+Montrealer,false,Intermediate
+Paradise Meadows,false,Intermediate
+Poma Line,false,Intermediate
+Purgatory,false,Intermediate
+Racer,false,Intermediate
+St. George's Prayer,false,Intermediate
+Sweetheart,false,Intermediate
+Taxi,false,Intermediate
+The Flash,false,Intermediate
+The Jet Lower,false,Intermediate
+The Willard,false,Intermediate
+Ullr's Dream,false,Intermediate
+Upper Northway,false,Intermediate
+Vermonter,false,Intermediate
+Wedelmaster,false,Intermediate
+601,false,Advanced
+Green Beret,false,Advanced
+Green Mountain Boys,false,Advanced
+Haynes,false,Advanced
+Hotshot Derick,false,Advanced
+JFK,false,Advanced
+Kitzbuehel,false,Advanced
+Lift Line,false,Advanced
+Lower Northway,false,Advanced
+Lower Northwest Passage,false,Advanced
+Middle Northwest Passage,false,Advanced
+Sis Boom Bah,false,Advanced
+The Jet,false,Advanced
+Upper Can Am,false,Advanced
+Upper Exhibition,false,Advanced
+Upper Goat Run,false,Advanced
+Upper Milk Run,false,Advanced
+Upper Northwest Passage,false,Advanced
+Upper River Quai,false,Advanced
+Upper U.N,false,Advanced
+Andre's Paradise,false,Advanced Glade
+Beaver Pond,false,Advanced Glade
+Bonaventure Glade,false,Advanced Glade
+Buck Woods,false,Advanced Glade
+Buckaroo Bonzai,false,Advanced Glade
+Canyon Land,false,Advanced Glade
+Deliverance,false,Advanced Glade
+Everglade,false,Advanced Glade
+Expo Glade,false,Advanced Glade
+Hell's Woods,false,Advanced Glade
+Kitz Woods,false,Advanced Glade
+North Glade,false,Advanced Glade
+Show-Off Glade,false,Advanced Glade
+Staircase,false,Advanced Glade
+Stateside Glade,false,Advanced Glade
+The Face Chutes,false,Advanced Glade
+Timbuktu,false,Advanced Glade
+Tuckerman's Chute,false,Advanced Glade
+Valhalla,false,Advanced Glade
+Vertigo,false,Advanced Glade
