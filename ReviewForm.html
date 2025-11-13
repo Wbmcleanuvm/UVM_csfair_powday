@@ -17,9 +17,9 @@
     <h1>Review Form</h1>
 
     <form method="POST" action="append.php">
-        
-    Name:<input type="text" name="fname">
 
+    Name:<input type="text" name="fname">
+    <br> </br>
     Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
     <p>Rating: <output id="value"></output></p>
 
@@ -39,7 +39,8 @@
     <option value=JayPeak > Jay Peak</option>
     <option value=SmugglersNotch>Smugglers Notch</option>
   </select>
-    <input type="submit">
+
+    <input type="button" value="Submit" onclick="this.form.submit()">
     </form>
 
 
