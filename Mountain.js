@@ -43,3 +43,8 @@ class trail extends Mountain
         return this.#status;
     }
 }
+//src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js
+function Readtraildata(mount){
+    
+
+}
