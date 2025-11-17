@@ -26,5 +26,25 @@
     <h1>
         Smuggler Notch
     </h1>
+
+    <button type="button" id="trailButton">Read Trails</button>
+
+    <p id="test">Test</p>
+    
+    <script src="Mountain.js"></script>
+
+    <script>
+        let trailButton = document.getElementById("trailButton");
+        let p = document.getElementById("test");
+        let mountain = new Mountain("Smuggs");
+        trailButton.addEventListener("click", readinTest());
+
+        function readinTest() 
+        {
+            let v = mountain.Readtraildata("Smuggs");   
+            p.innerText = v;
+        }
+    </script>
+
 </body>
 </html>

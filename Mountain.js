@@ -4,6 +4,11 @@ class Mountain
     #location;
     #trails;
 
+    Mountain(mountName) 
+    {
+        this.mountName = mountName;
+    }
+
     Mountain(mountName, location, trails){
         this.mountName = mountName;
         this.location = location
@@ -22,7 +27,26 @@ class Mountain
     {
 
     }
-}
+
+    src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
+    Readtraildata(mount){
+        
+        mount = mount + "trails.csv";
+        console.log(mount);
+        papaparse.parse(mount,{
+            download:true,
+            header:true,
+            complete:function(results){
+                console.log(results.data);
+                return "results Read";
+            }
+            
+        })
+        
+    }
+}   
+
+
 class trail extends Mountain
 {
     #name;
@@ -42,18 +66,4 @@ class trail extends Mountain
     getStatus(){
         return this.#status;
     }
-}
-//src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js
-function Readtraildata(mount){
-    mount = mount += "trails.csv";
-    papaparse.parse(mount,{
-        download:true,
-        header:true,
-        complete:function(results){
-            console.log(results.data);
-        }
-        
-    }
-        
-    );
 }
