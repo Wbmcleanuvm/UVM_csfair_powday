@@ -29,18 +29,35 @@ class Mountain
     }
 
     src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
-    Readtraildata(mount){
+    Readtraildata(){
         
-        mount = mount + "trails.csv";
-        console.log(mount);
-        papaparse.parse(mount,{
-            download:true,
-            header:true,
-            complete:function(results){
-                console.log(results.data);
-                return "results Read";
-            }
-            
+        filename = this.mountName + "trails.csv";
+        console.log(filename);
+        papaparse.parse(filename,{
+        delimiter: "" ,	// auto-detect
+        newline: "",	// auto-detect
+        quoteChar: '"',
+        escapeChar: '"',
+        header: true,
+        transformHeader: undefined,
+        dynamicTyping: false,
+        preview: 0,
+        encoding: "",
+        worker: false,
+        comments: false,
+        step: step: function(results, parser) {
+	    console.log("Row data:", results.data);
+	    console.log("Row errors:", results.errors);
+    },
+        complete: undefined,
+        error: undefined,
+        download: false,
+        fastMode: undefined,
+        beforeFirstChunk: undefined,
+        withCredentials: undefined,
+        transform: undefined,
+        delimitersToGuess: [','],
+ 
         })
         
     }

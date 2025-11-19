@@ -37,12 +37,13 @@
         let trailButton = document.getElementById("trailButton");
         let p = document.getElementById("test");
         let mountain = new Mountain("Smuggs");
-        trailButton.addEventListener("click", readinTest());
+        trailButton.addEventListener("click", readinTest)
 
         function readinTest() 
         {
-            let v = mountain.Readtraildata("Smuggs");   
-            p.innerText = v;
+            let v = mountain.Readtraildata();   
+            console.log(v);
+            
         }
     </script>
 
