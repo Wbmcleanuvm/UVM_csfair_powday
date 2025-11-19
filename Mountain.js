@@ -32,29 +32,21 @@ class Mountain
     Readtraildata(){
         
         filename = this.mountName + "trails.csv";
+        let filename = String(filename);
         console.log(filename);
         papaparse.parse(filename,{
         delimiter: "" ,	// auto-detect
         newline: "",	// auto-detect
-        quoteChar: '"',
-        escapeChar: '"',
         header: true,
-        transformHeader: undefined,
-        dynamicTyping: false,
         preview: 0,
         encoding: "",
         worker: false,
         comments: false,
-        step: step: function(results, parser) {
-	    console.log("Row data:", results.data);
-	    console.log("Row errors:", results.errors);
-    },
-        complete: undefined,
-        error: undefined,
         download: false,
+        complete: function(results, file) {
+	    console.log("Parsing complete:", results, file);
+        },
         fastMode: undefined,
-        beforeFirstChunk: undefined,
-        withCredentials: undefined,
         transform: undefined,
         delimitersToGuess: [','],
  
