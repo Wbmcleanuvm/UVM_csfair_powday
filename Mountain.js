@@ -1,3 +1,6 @@
+/*import Papa from "papaparse";
+import "Smuggstrails.csv";*/
+
 class Mountain 
 {
     #mountName;
