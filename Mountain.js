@@ -2,19 +2,17 @@ class Mountain
 {
     #mountName;
     #location;
-    #trails;
+    #trails = [];
 
     Mountain(mountName) 
     {
         this.mountName = mountName;
     }
 
-    Mountain(mountName, location, trails){
-        this.mountName = mountName;
-        this.location = location
-        this.trails = trails
-    
+    setTrails(trails){
+        this.trails = trails;
     }
+
     readDataFromSite() 
     {
     //  Parse through website data   
@@ -30,12 +28,12 @@ class Mountain
 
     src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
     Readtraildata(){
-        
-        filename = this.mountName + "trails.csv";
-        let filename = String(filename);
+        let filename = this.mountName + "trails.csv";
+        filename = String(filename);
         console.log(filename);
-        papaparse.parse(filename,{
-        delimiter: "" ,	// auto-detect
+        Papa.parse("Smuggstrails.csv", {
+        download: true,
+        delimiter: "",	// auto-detect
         newline: "",	// auto-detect
         header: true,
         preview: 0,
@@ -46,16 +44,17 @@ class Mountain
         complete: function(results, file) {
 	    console.log("Parsing complete:", results, file);
         },
-        fastMode: undefined,
-        transform: undefined,
         delimitersToGuess: [','],
  
         })
+        this.setTrails(results)
         
     }
-}   
+    
+    
+   
 
-
+}
 class trail extends Mountain
 {
     #name;
