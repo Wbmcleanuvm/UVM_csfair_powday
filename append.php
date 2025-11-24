@@ -13,12 +13,10 @@ fputcsv($csv, $row, escape: "");
 // Close the CSV file
 fclose($csv);
 
-echo "submitted successfully";
-header("Location: index.html");
+
 exit(); 
 
 
 //extension.phpServer.reloadServer
 // CTRL + SHFT + P:   PHP Server: Stop project
 ?>
-

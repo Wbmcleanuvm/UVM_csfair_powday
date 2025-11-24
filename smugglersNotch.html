@@ -33,16 +33,15 @@
     
     <script src="Mountain.js"></script>
 
-    <script>
-        let mount = "Smuggs";
-        let trailButton = document.getElementById("trailButton");
-        let p = document.getElementById("test");
-        let mountain = new Mountain(mount);
-        trailButton.addEventListener("click", mountain.Readtraildata());
 
-            
+    <script>
+        trailButton.addEventListener("click", mountain.Readtraildata());
+        //this works, must run on server due to php
+        //const trails = <?php echo json_encode($data); ?>;
+
 
     </script>
+  
 
 </body>
 </html>
