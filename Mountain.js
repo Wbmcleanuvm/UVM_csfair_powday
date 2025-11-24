@@ -28,8 +28,8 @@ class Mountain
     {
 
     }
-
-    src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
+    
+    /*src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
     Readtraildata(){
         let filename = this.mountName + "trails.csv";
         filename = String(filename);
@@ -52,7 +52,8 @@ class Mountain
         })
         this.setTrails(results)
         
-    }
+    }*/
+   
     
     
    
