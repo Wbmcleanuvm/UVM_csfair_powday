@@ -7,6 +7,17 @@
  * @return array            2D array of CSV data
  * @throws Exception        If file cannot be opened
  */
+switch ($read) {
+    case "review":
+        $filename = $GET['filename'];
+
+    case "trail":
+        $filename = $GET['filename'];
+        $response['message'] = readCsvToMatrix($filename);
+        break;
+
+
+}
 function readCsvToMatrix(string $filename, string $delimiter = ','): array {
     // Ensure file exists and is readable
     if (!is_readable($filename)) {

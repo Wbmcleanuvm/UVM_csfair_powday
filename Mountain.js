@@ -3,13 +3,16 @@ import "Smuggstrails.csv";*/
 
 class Mountain 
 {
-    #mountName;
+    mountName;
     #location;
     #trails = [];
+    trailFilename;
 
-    Mountain(mountName) 
+
+    Mountain(mountName, trailFilename) 
     {
         this.mountName = mountName;
+        this.trailFilename = trailFilename;
     }
 
     setTrails(trails){
@@ -53,7 +56,7 @@ class Mountain
         this.setTrails(results)
         
     }*/
-   
+
     
     
    
