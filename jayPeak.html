@@ -16,11 +16,12 @@
         crossorigin=""></script>
 
     <style>
-        #map { height: 800px; width: 1000px; background-color: rgb(134, 168, 214); justify-self: center;}
+        #map { height: 500px; width: 700px; background-color: rgb(134, 168, 214); justify-self: center;}
 
         h1 {
             text-align: center;
         }
+
     </style>
 </head>
 <body>
@@ -41,14 +42,17 @@
 
     <div id="map">
         <script>
+            const heightPix = 1164;
+            const widthPix = 1892;
+
             const map = L.map('map', {
                 crs: L.CRS.Simple,
-                minZoom: -1,
+                minZoom: -.5,
                 maxZoom: 4
             }); 
-            const bounds = [[0, 0], [1354, 2000]]; // [[0, 0], [height, width]]
+            const bounds = [[0, 0], [heightPix, widthPix]]; // [[0, 0], [height, width]]
 
-            const mOverlay = L.imageOverlay('TrailMaps/jaypeakMap.jpg', bounds, {
+            const mOverlay = L.imageOverlay('TrailMaps/Screenshot 2025-11-25 211953.png', bounds, {
                 attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
             }).addTo(map);;   
 
@@ -58,10 +62,22 @@
             let closed = false;
 
             if (closed) {
-                L.rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(map);
+                L.rectangle(bounds, {color: "#FFFFFF", weight: 1}).addTo(map);
                 const marker = L.marker([bounds[1][0] / 2, bounds[1][1] / 2]).addTo(map);
                 marker.bindTooltip("Mountain Closed").openTooltip();
             }
+
+            // const trailCoords = [
+            //     [120, 220],
+            //     [180, 300],
+            //     [260, 360],
+            //     [400, 480]
+            // ];
+
+            // L.polyline(trailCoords, {
+            //     color: "red",
+            //     weight: 4
+            // }).addTo(map);
         </script>
     </div>
 </body>
