@@ -38,6 +38,7 @@
 
 
     <script>
+        let trails = [];
         fetch('ReadCsvData.php?action=trail&filename=Smuggstrails.csv')
         .then(response => {
             if (!response.ok) {
@@ -50,9 +51,10 @@
             //matrix isnt working correctly but were finnaly fucking getting data from php
             document.getElementById("trailButton").addEventListener("click", function() {
                 let trails = data.message;
+                let trai = [];
                 let output = "Trails at Smugglers Notch:<br>";
                 for (let i = 1; i < trails.length; i++) { // Start from 1 to skip header
-                    output += `Name: ${trails[i]}, Difficulty: ${trails[i][1]}, Length: ${trails[i][2]} miles<br>`;
+                    output += `Name: ${trails[i]}<br>`;
                 }
                 document.getElementById("test").innerHTML = output;
             });
