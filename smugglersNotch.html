@@ -47,9 +47,18 @@
         })
         .then(data => {
             console.log(data);
+            //matrix isnt working correctly but were finnaly fucking getting data from php
+            document.getElementById("trailButton").addEventListener("click", function() {
+                let trails = data.message;
+                let output = "Trails at Smugglers Notch:<br>";
+                for (let i = 1; i < trails.length; i++) { // Start from 1 to skip header
+                    output += `Name: ${trails[i]}, Difficulty: ${trails[i][1]}, Length: ${trails[i][2]} miles<br>`;
+                }
+                document.getElementById("test").innerHTML = output;
+            });
         })
         .catch(error => console.error('Error fetching trail data:', error));
-        //const trails = <?php echo json_encode($data); ?>;
+        
 
 
     </script>

@@ -1,6 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ALL);
+
 $response = [];
 
 $action = $_GET['action'] ?? null;
@@ -11,7 +15,9 @@ try {
         case "review":
         case "trail":
             if ($filename) {
-                $response['message'] = readCsvToMatrix($filename);
+                $response['message'] = json_encode(readCsvToMatrix($filename));
+                /*$matrx = json_encode($response['message']);
+                echo $matrx;*/
             } else {
                 $response['error'] = "No filename provided.";
             }
