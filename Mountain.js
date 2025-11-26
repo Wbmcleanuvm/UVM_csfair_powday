@@ -3,10 +3,10 @@ import "Smuggstrails.csv";*/
 
 class Mountain 
 {
-    mountName;
+    #mountName;
     #location;
     #trails = [];
-    trailFilename;
+    #trailFilename;
 
 
     Mountain(mountName, trailFilename) 
@@ -15,8 +15,8 @@ class Mountain
         this.trailFilename = trailFilename;
     }
 
-    setTrails(trails){
-        this.trails = trails;
+    addTrail(trail){
+        this.trails.push(t);
     }
 
     readDataFromSite() 
@@ -32,30 +32,11 @@ class Mountain
 
     }
     
-    /*src="https://cdn.jsdelivr.net/npm/papaparse@5.5.0/papaparse.min.js";
+    
     Readtraildata(){
-        let filename = this.mountName + "trails.csv";
-        filename = String(filename);
-        console.log(filename);
-        Papa.parse("Smuggstrails.csv", {
-        download: true,
-        delimiter: "",	// auto-detect
-        newline: "",	// auto-detect
-        header: true,
-        preview: 0,
-        encoding: "",
-        worker: false,
-        comments: false,
-        download: false,
-        complete: function(results, file) {
-	    console.log("Parsing complete:", results, file);
-        },
-        delimitersToGuess: [','],
- 
-        })
-        this.setTrails(results)
         
-    }*/
+        
+    }
 
     
     
