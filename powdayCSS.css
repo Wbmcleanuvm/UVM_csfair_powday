@@ -2,6 +2,7 @@ body {
     font-family: fantasy;
     margin: 0;
     padding: 0;
+    background-color: rgb(122, 133, 143);
 }
 
 form{
@@ -50,8 +51,10 @@ input[type=submit] {
 
 .mainGrid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 20px;
+    margin: 0px 10px;
+    align-items: start;
 }
 
 .navbackground 
