@@ -16,69 +16,92 @@
         crossorigin=""></script>
 
     <style>
-        #map { height: 500px; width: 700px; background-color: rgb(134, 168, 214); justify-self: center;}
+        #map { height: 350px; width: 500px; background-color: rgb(134, 168, 214); filter: brightness(75%); border-radius: 12px;}
 
-        h1 {
+        h1 
+        {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
+            margin: 5px 15px;
+            background: linear-gradient(to right, #98b4f0, rgb(50, 82, 127));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* background-color: rgb(136, 170, 217); */
         }
 
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="jayPeak.html">Jay Peak</a>
-        <a href="boltonValley.html">Bolton Valley</a>
-        <a href="sugarBush.html">SugarBush</a>
-        <a href="smugglersNotch.html">SmugglersNotch</a>
-        <a href="reviewForm.html">Review</a>
-        <a href="index.html">Home</a>
+    <div class="navbackground">
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="jayPeak.html">Jay Peak</a>
+            <a href="boltonValley.html">Bolton Valley</a>
+            <a href="sugarBush.html">SugarBush</a>
+            <a href="smugglersNotch.html">SmugglersNotch</a>
+            <a href="reviewForm.html">Review</a>
+        </div>
     </div>
 
     <header>
         <h1>
-            Jay Peak
+            ❄️ JAY PEAK ❄️
         </h1>
     </header>
 
-    <div id="map">
-        <script>
-            const heightPix = 1164;
-            const widthPix = 1892;
+    <div class="mainGrid">
+        <div id="map">
+            <script>
+                const heightPix = 1164;
+                const widthPix = 1892;
 
-            const map = L.map('map', {
-                crs: L.CRS.Simple,
-                minZoom: -.5,
-                maxZoom: 4
-            }); 
-            const bounds = [[0, 0], [heightPix, widthPix]]; // [[0, 0], [height, width]]
+                const map = L.map('map', {
+                    crs: L.CRS.Simple,
+                    minZoom: -.5,
+                    maxZoom: 4
+                }); 
+                const bounds = [[0, 0], [heightPix, widthPix]]; // [[0, 0], [height, width]]
 
-            const mOverlay = L.imageOverlay('TrailMaps/Screenshot 2025-11-25 211953.png', bounds, {
-                attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
-            }).addTo(map);;   
+                const mOverlay = L.imageOverlay('TrailMaps/Screenshot 2025-11-25 211953.png', bounds, {
+                    attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
+                }).addTo(map);;   
 
-            map.fitBounds(bounds);
-            map.setMaxBounds(bounds);
+                map.fitBounds(bounds);
+                map.setMaxBounds(bounds);
 
-            let closed = false;
+                let closed = false;
 
-            if (closed) {
-                L.rectangle(bounds, {color: "#FFFFFF", weight: 1}).addTo(map);
-                const marker = L.marker([bounds[1][0] / 2, bounds[1][1] / 2]).addTo(map);
-                marker.bindTooltip("Mountain Closed").openTooltip();
-            }
+                if (closed) {
+                    L.rectangle(bounds, {color: "#FFFFFF", weight: 1}).addTo(map);
+                    const marker = L.marker([bounds[1][0] / 2, bounds[1][1] / 2]).addTo(map);
+                    marker.bindTooltip("Mountain Closed").openTooltip();
+                }
 
-            // const trailCoords = [
-            //     [120, 220],
-            //     [180, 300],
-            //     [260, 360],
-            //     [400, 480]
-            // ];
+                // const trailCoords = [
+                //     [120, 220],
+                //     [180, 300],
+                //     [260, 360],
+                //     [400, 480]
+                // ];
 
-            // L.polyline(trailCoords, {
-            //     color: "red",
-            //     weight: 4
-            // }).addTo(map);
-        </script>
+                // L.polyline(trailCoords, {
+                //     color: "red",
+                //     weight: 4
+                // }).addTo(map);
+            </script>
+        </div>
+
+        <div class="weather">
+            <p>Weather</p>
+        </div>
+        
+        <div class="trailStatus">
+            <p>Trail Status<p>
+        </div>
+
+        <div class="reviewSection">
+            <p>Leave a Review </p>
+        </div>
     </div>
 </body>
 </html>
