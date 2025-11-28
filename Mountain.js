@@ -21,7 +21,9 @@ class Mountain
         return this.trails[inx].getName();
     }
     getTrailStatus(inx){
-        return this.trails[inx].getStatus();
+        return this.trails[inx
+
+        ].getStatus();
     }
     getTrailDifficulty(inx){
         return this.trails[inx].getDifficulty();
@@ -30,9 +32,16 @@ class Mountain
     {
         return this.trails.length;
     }
-    numberOfTrailsOpen() 
+    getNumberOfTrailsOpen() 
     {
-        //unfinished
+        let count = 0;
+        for (let i = 0; i < this.trails.length; i++) {
+            if (this.trails[i].getStatus() == "true") 
+            {
+                count++;
+            }
+        }  
+        return count;
     }
 }
 
@@ -42,6 +51,7 @@ function convertToTrails(mountainName, trailData){
     let tconst = [];
     let count = 0;
     let i = 0;
+    let openTrails = 0;
     while ( i < trailData.length){
         if (trailData[i] == ","){  
             count++;
@@ -62,25 +72,21 @@ function convertToTrails(mountainName, trailData){
             add = "";
         }else{
             add = add + trailData[i];
-            //console.log(add);
+            // console.log(add);
         }
         i++;
-
     }
-    /*
-    prints trails to console
-    let s = 0;
-    while (s<trails.length){
-        console.log(trails[s]);
-        s++;
-    } */
-   //objerct initization still doesnt work
+    
+    // prints trails to console
+    // let s = 0;
+    // while (s<trails.length){
+    //     console.log(trails[s]);
+    //     s++;
+    // } 
     
    mountList.push(new Mountain(mountainName, trails));
    console.log(mountList[0].getTrailName(2));
    console.log(mountList.length);
-
-   
 }
 class trail
 {
