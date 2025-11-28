@@ -16,8 +16,7 @@ try {
         case "trail":
             if ($filename) {
                 $response['message'] = json_encode(readCsvToMatrix($filename));
-                /*$matrx = json_encode($response['message']);
-                echo $matrx;*/
+                
             } else {
                 $response['error'] = "No filename provided.";
             }
@@ -41,6 +40,7 @@ function readCsvToMatrix(string $filename, string $delimiter = ','): array {
     if (($handle = fopen($filename, 'r')) !== false) {
         while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
             $matrix[] = array_map('trim', $row);
+            
         }
         fclose($handle);
     } else {
