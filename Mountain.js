@@ -36,7 +36,7 @@ class Mountain
     }
 }
 
-function convertToTrails(mObjName, mountainName, trailData){
+function convertToTrails(mountainName, trailData){
     let add = "";
     let trails = [];
     let tconst = [];
@@ -74,9 +74,13 @@ function convertToTrails(mObjName, mountainName, trailData){
         console.log(trails[s]);
         s++;
     } */
-   if (mObjName == "Smuggs"){
+   //objerct initization still doesnt work
+    /*let Smuggs;
+    if (mObjName === "Smuggs") {
         Smuggs = new Mountain(mountainName, trails);
-   }
+        console.log(Smuggs.getTrailName(2));
+    }*/
+
    
 }
 class trail
