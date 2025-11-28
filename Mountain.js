@@ -73,8 +73,11 @@ function convertToTrails(mObjName, mountainName, trailData){
     while (s<trails.length){
         console.log(trails[s]);
         s++;
-    } */ 
-   mObjName = new Mountain(mountainName, trails);
+    } */
+   if (mObjName == "Smuggs"){
+        Smuggs = new Mountain(mountainName, trails);
+   }
+   
 }
 class trail
 {
