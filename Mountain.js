@@ -1,6 +1,6 @@
 /*import Papa from "papaparse";
 import "Smuggstrails.csv";*/
-
+mountList = [];
 class Mountain 
 {
     #mountName;
@@ -75,11 +75,10 @@ function convertToTrails(mountainName, trailData){
         s++;
     } */
    //objerct initization still doesnt work
-    /*let Smuggs;
-    if (mObjName === "Smuggs") {
-        Smuggs = new Mountain(mountainName, trails);
-        console.log(Smuggs.getTrailName(2));
-    }*/
+    
+   mountList.push(new Mountain(mountainName, trails));
+   console.log(mountList[0].getTrailName(2));
+   console.log(mountList.length);
 
    
 }

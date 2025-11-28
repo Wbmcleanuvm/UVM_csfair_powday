@@ -13,6 +13,12 @@ $filename = $_GET['filename'] ?? null;
 try {
     switch ($action) {
         case "review":
+            if ($filename) {
+                $response['message'] = json_encode(readCsvToMatrix($filename));
+            } else {
+                $response['error'] = "No filename provided.";
+            }
+            break;
         case "trail":
             if ($filename) {
                 $response['message'] = json_encode(readCsvToMatrix($filename));
