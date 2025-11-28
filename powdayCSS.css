@@ -49,6 +49,37 @@ input[type=submit] {
     border-radius: 12px;
 }
 
+.map
+{
+    height: 350px; 
+    width: 500px; 
+    background-color: rgb(134, 168, 214); 
+    filter: brightness(75%); 
+    border-radius: 12px; 
+    inherits: false;
+}
+
+.mapHighlight
+{
+    padding: 5px 5px;
+    border-radius: 12px; 
+    height: 350px;
+    width: 500px;
+    background-image: conic-gradient(from var(--rotation), rgb(0, 113, 85),  rgb(122, 133, 143), rgb(0, 113, 85));
+    animation: 1s spin linear infinite;
+}
+
+@property --rotation {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from { --rotation: 0deg; }
+    to { --rotation: 360deg; }
+}
+
 .mainGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
