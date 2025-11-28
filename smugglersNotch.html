@@ -35,10 +35,9 @@
     <p id="test">Test</p>
     
     <script src="Mountain.js">
-    mountain = new Mountain("Smugglers Notch", "Smuggstrails.csv");
+    smuggs = new Mountain("Smugglers Notch", "Smuggstrails.csv");
     </script>
-
-
+   
     <script>
         let trails = [];
         fetch('ReadCsvData.php?action=trail&filename=Smuggstrails.csv')
@@ -49,11 +48,11 @@
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            console.log(data.message);
+            convertToTrails(data.message);
             //matrix isnt working correctly but were finnaly fucking getting data from php
             document.getElementById("trailButton").addEventListener("click", function() {
                 let trails = data.message;
-                let trai = [];
                 let output = "Trails at Smugglers Notch:<br>";
                 for (let i = 1; i < trails.length; i++) { // Start from 1 to skip header
                     output += `Name: ${trails[i]}<br>`;
@@ -62,8 +61,8 @@
             });
         })
         .catch(error => console.error('Error fetching trail data:', error));
-        
 
+        
 
     </script>
   

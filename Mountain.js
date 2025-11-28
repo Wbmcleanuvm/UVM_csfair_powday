@@ -43,7 +43,7 @@ class Mountain
    
 
 }
-function convertToTrails(trailData, Mountain){
+function convertToTrails(trailData){
     let add = "";
     let trails = [];
     let tconst = [];
@@ -58,29 +58,37 @@ function convertToTrails(trailData, Mountain){
         }
         else if (trailData[i] == "["){
             i++;
-            count = 0;
         }
         else if (trailData[i] == "]"){
+            tconst.push(add);
             newTrail = new trail(tconst[0], tconst[1], tconst[2]);
             trails.push(newTrail);
+            count = 0;
             i++;
             tconst = [];
+            add = "";
+        }else{
+            add = add + trailData[i];
+            //console.log(add);
         }
-        add += trailData[i];
         i++;
 
     }
-    console.log(trails[1]);
+    let s = 0;
+    while (s<trails.length){
+        console.log(trails[s]);
+        s++;
+    }
 
 
 
 }
-class trail extends Mountain
+class trail
 {
     #name;
     #difficulty;
     #status;
-    trail(name, difficulty,status){
+    constructor(name, status, difficulty){
         this.#name = name;
         this.#difficulty = difficulty;
         this.#status = status;
