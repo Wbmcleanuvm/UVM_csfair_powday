@@ -6,44 +6,37 @@ class Mountain
     #mountName;
     #location;
     #trails = [];
-    #trailFilename;
 
 
-    Mountain(mountName, trailFilename) 
+    constructor(mountName, trails) 
     {
         this.mountName = mountName;
-        this.trailFilename = trailFilename;
+        this.trails = trails;
     }
 
     addTrail(trail){
         this.trails.push(t);
     }
-
-    readDataFromSite() 
-    {
-    //  Parse through website data   
+    getTrailName(inx){
+        return this.trails[inx].getName();
     }
-    numberOfTrails() 
+    getTrailStatus(inx){
+        return this.trails[inx].getStatus();
+    }
+    getTrailDifficulty(inx){
+        return this.trails[inx].getDifficulty();
+    }
+    getNumberOfTrails() 
     {
-    //  Return number of trails on mountain
+        return this.trails.length;
     }
     numberOfTrailsOpen() 
     {
-
+        //unfinished
     }
-    
-    
-    Readtraildata(){
-        
-        
-    }
-
-    
-    
-   
-
 }
-function convertToTrails(trailData){
+
+function convertToTrails(mObjName, mountainName, trailData){
     let add = "";
     let trails = [];
     let tconst = [];
@@ -74,14 +67,14 @@ function convertToTrails(trailData){
         i++;
 
     }
+    /*
+    prints trails to console
     let s = 0;
     while (s<trails.length){
         console.log(trails[s]);
         s++;
-    }
-
-
-
+    } */ 
+   mObjName = new Mountain(mountainName, trails);
 }
 class trail
 {
