@@ -43,7 +43,7 @@ class Mountain
    
 
 }
-function convertToTrails(trailData){
+function convertToTrails(trailData, Mountain){
     let add = "";
     let trails = [];
     let tconst = [];
@@ -67,11 +67,10 @@ function convertToTrails(trailData){
             tconst = [];
         }
         add += trailData[i];
-        console.log(add);
         i++;
 
     }
-    console.log(trails);
+    console.log(trails[1]);
 
 
 
