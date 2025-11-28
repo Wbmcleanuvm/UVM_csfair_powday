@@ -34,13 +34,8 @@ class Mountain
     
     
     Readtraildata(){
-        
-        
+           
     }
-
-    
-    
-   
 
 }
 class trail extends Mountain
