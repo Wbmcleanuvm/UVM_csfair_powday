@@ -18,7 +18,7 @@
         crossorigin=""></script>
 
     <script>
-        //READ TRAIL DATA SCRIPT
+        //READ TRAIL DATA SCRIPT and create Mountain object
         let trails = [];
         fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
         .then(response => {
@@ -29,10 +29,11 @@
         })
         .then(data => {
             //Smuggs is the Mountain object created in mountain.js, used to call its methods
-            convertToTrails( "Jay Peak", data.message);
-            
+            trails = convertToTrails("Jay Peak", data.message);
         })
         .catch(error => console.error('Error fetching trail data:', error));
+        jay = new Mountain("Jay Peak", trails);
+        console.log(jay.getmountName());
 
     </script>    
 
@@ -150,9 +151,8 @@
 
             <select id= "trailsDropdown"></select>
             <script>
-                console.log("Mount List Length: " + mountList.length);
-                //const trailList = mountList[0].getAllTrailNames();
-                //console.log(trailList);
+                console.log(jay.getmountName());
+                
             </script>
 
 

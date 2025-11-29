@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="Mountain.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,11 +30,6 @@
     <h1>
         Smuggler Notch
     </h1>
-
-    
-
-   
-
     
     <script>
         //trail read script
@@ -47,18 +43,17 @@
         })
         .then(data => {
             //Smuggs is the Mountain object created in mountain.js, used to call its methods
-            convertToTrails("Smugglers Notch", data.message);
+            trails = convertToTrails("Smugglers Notch", data.message);
             
         })
         .catch(error => console.error('Error fetching trail data:', error));
-
+        smuggs = new Mountain("Smugglers Notch", trails);
+        console.log(smuggs.getmountName());
         /*let reviews = [];
-        fetch('ReadCsvData.php?action=review&filename=SmuggsReviews.csv')*/trails
+        fetch('ReadCsvData.php?action=review&filename=SmuggsReviews.csv')*/
 
     </script>
-    <script src="Mountain.js">
     
-    </script>
   
 
 </body>

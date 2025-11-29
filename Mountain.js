@@ -77,6 +77,7 @@ function convertToTrails(mountainName, trailData){
         }
         i++;
 
+
     }
     /*
     prints trails to console
@@ -87,7 +88,7 @@ function convertToTrails(mountainName, trailData){
     } */
    //objerct initization still doesnt work
     
-   mountList.push(new Mountain(mountainName, trails));
+   return trails;
 
    
 }
