@@ -59,6 +59,67 @@
         });
 
     </script>
+
+
+        <div class="reviewSection">
+            <p>Leave a Review </p>
+               <form method="POST" action="append.php">
+
+            Name:<input 
+            type="text" 
+            name="fname" 
+            required 
+            minlength="2" 
+            maxlength="10" 
+            pattern="[A-Za-z]+" 
+            placeholder="Enter username"
+            >
+
+            <br> </br>
+            Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
+            <p>Rating: <output id="value"></output></p>
+
+            <script>
+                const value = document.querySelector("#value");
+                const input = document.querySelector("#input");
+                value.textContent = input.value;
+                input.addEventListener("input", (event) => {
+                value.textContent = event.target.value;
+                });
+            </script>
+
+            <label for="Mnt">Choose a mountain:</label>
+            <select name="mnt" id="Mnt">
+            <<option value=SmugglersNotch>Smugglers Notch</option>
+            </select>
+            <br></br>
+            <label for="Trail">Choose the trail</label>
+            <select name="Trail" id="Trail"></select>
+
+            <script>
+                fetchTrails().then((trails) => {
+                let smuggs = new Mountain("SmugglersNotch", trails);
+                let trailNames = smuggs.getAllTrailNames();
+                const select = document.getElementById("Trail");
+                trailNames.forEach(trail => {
+                const option = document.createElement("option");
+                option.textContent = trail; 
+                select.appendChild(option);
+            });
+
+            
+            
+            });
+            </script>
+
+
+
+            <input type="button" value="Submit" onclick="this.form.submit()">
+            </form>
+
+        </div>
+
+
     
   
 
