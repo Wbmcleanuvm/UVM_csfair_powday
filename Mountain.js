@@ -1,5 +1,6 @@
 /*import Papa from "papaparse";
 import "Smuggstrails.csv";*/
+
 mountList = [];
 class Mountain 
 {
@@ -108,3 +109,4 @@ class trail
         return this.#status;
     }
 }
+

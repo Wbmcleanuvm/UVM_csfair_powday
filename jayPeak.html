@@ -127,6 +127,13 @@
             let totalTrails = JayPeak.getNumberOfTrails();
             let trailStatus = document.getElementById("trails");
             trailStatus.innerHTML = "Trail Status: " + trailsOpen + " / " + totalTrails;
+
+            fetch('http://localhost:3000/jayPeak')
+                .then(r => r.json())
+                .then(data => {
+                    console.log("24hr Snow:", data.last24);
+            })
+            .catch(error => console.error('Error fetching server data:', error));
         })
         .catch(error => console.error('Error fetching trail data:', error));
     </script>
