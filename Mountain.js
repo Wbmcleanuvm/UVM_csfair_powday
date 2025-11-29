@@ -5,8 +5,7 @@ class Mountain
     #mountName;
     #location;
     #trails = [];
-
-
+    
     constructor(mountName, trails) 
     {
         this.mountName = mountName;
@@ -87,8 +86,6 @@ function convertToTrails(trailData){
             //console.log(add);
         }
         i++;
-        
-
 
     }
     /*
@@ -99,10 +96,7 @@ function convertToTrails(trailData){
         s++;
     } */
    //objerct initization still doesnt work
-    
    return trails;
-
-   
 }
 class trail
 {
