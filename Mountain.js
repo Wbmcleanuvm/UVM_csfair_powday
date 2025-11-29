@@ -15,18 +15,24 @@ class Mountain
     getmountName(){
         return this.mountName;
     }
+    getTrail(idx){
+        return this.trails[idx];
+    }
 
     addTrail(trail){
         this.trails.push(t);
     }
     getTrailName(inx){
-        return this.trails[inx].getName();
+        let t = this.trails[inx];
+        return t.getName();
     }
     getTrailStatus(inx){
-        return this.trails[inx].getStatus();
+        let t = this.trails[inx];
+        return t.getStatus();
     }
     getTrailDifficulty(inx){
-        return this.trails[inx].getDifficulty();
+        let t = this.trails[inx];
+        return t.getDifficulty
     }
     getNumberOfTrails() 
     {
@@ -37,17 +43,18 @@ class Mountain
         //unfinished
     }
     getAllTrailNames(){
-        lstNames = [];
-        i = 0;
+        let lstName = [];
+        let i = 0;
         while(i < this.trails.length){
             lstName.push(this.getTrailName(i));
-            return lstNames;
+            i++;
         }
+        return lstName;
 
     }
 }
 
-function convertToTrails(mountainName, trailData){
+function convertToTrails(trailData){
     let add = "";
     let trails = [];
     let tconst = [];
