@@ -1,3 +1,4 @@
+
 class Review
 {
     constructor(reviewerName, rating, trailname) {
@@ -8,12 +9,18 @@ class Review
     getReviewerName() {
         return this.reviewerName;
     }
-
     getRating() {
         return this.rating;
     }
     getComments() {
         return this.comments;
     }
-//unfinished
+    getTrailName() { 
+        return this.trailname;
+    }
 }
+function convertToReviews(reviewData){
+    
+}
+
+//unfinished
