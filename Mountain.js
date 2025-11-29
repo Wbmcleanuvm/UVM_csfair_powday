@@ -1,6 +1,5 @@
-/*import Papa from "papaparse";
-import "Smuggstrails.csv";*/
 mountList = [];
+
 class Mountain 
 {
     #mountName;
@@ -12,6 +11,9 @@ class Mountain
     {
         this.mountName = mountName;
         this.trails = trails;
+    }
+    getmountName(){
+        return this.mountName;
     }
 
     addTrail(trail){
@@ -33,6 +35,15 @@ class Mountain
     numberOfTrailsOpen() 
     {
         //unfinished
+    }
+    getAllTrailNames(){
+        lstNames = [];
+        i = 0;
+        while(i < this.trails.length){
+            lstName.push(this.getTrailName(i));
+            return lstNames;
+        }
+
     }
 }
 
@@ -77,8 +88,6 @@ function convertToTrails(mountainName, trailData){
    //objerct initization still doesnt work
     
    mountList.push(new Mountain(mountainName, trails));
-   console.log(mountList[0].getTrailName(2));
-   console.log(mountList.length);
 
    
 }
