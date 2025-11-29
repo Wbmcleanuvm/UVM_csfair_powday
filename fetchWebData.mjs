@@ -9,9 +9,7 @@ export async function jayGetData(url)
     const $ = cheerio.load(html);
 
     const last24 = $('.SnowReport-measure dd').text();  
-    // const baseDepth = $('selector-for-base-depth').text();
 
-    // return { last24, baseDepth /*, ... */ };
     }
     
     catch (err) {
