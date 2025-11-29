@@ -44,7 +44,7 @@ class Mountain
     }
     getAllTrailNames(){
         let lstName = [];
-        let i = 0;
+        let i = 1;
         while(i < this.trails.length){
             lstName.push(this.getTrailName(i));
             i++;
@@ -79,10 +79,15 @@ function convertToTrails(trailData){
             tconst = [];
             add = "";
         }else{
-            add = add + trailData[i];
+            if (trailData[i] == '"'){
+            }else{
+                add += trailData[i];
+            }
+            
             //console.log(add);
         }
         i++;
+        
 
 
     }
