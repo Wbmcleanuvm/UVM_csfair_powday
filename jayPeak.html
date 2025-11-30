@@ -116,7 +116,24 @@
         </div>
 
         <div class="weather">
-            <p>Weather</p>
+            <h2 id="temp">Tempature: </h2>
+
+            <script>
+                celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
+
+                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                .then(res => res.json())
+                .then(weatherObj => {
+                    const daily = weatherObj.timelines.daily[0];
+                    const tempAvg = celsiusToFahrenheit(daily.values.temperatureAvg).toFixed(1);
+
+                    let temp = document.getElementById("temp");
+                    temp.innerHTML = "Tempature: " + tempAvg + " °F";
+
+                    
+                })
+                .catch(err => console.error('Error fetching weather data:', err));
+            </script>
         </div>
         
         <div class="trailStatus">
