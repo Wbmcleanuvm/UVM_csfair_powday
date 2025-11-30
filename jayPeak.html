@@ -138,23 +138,55 @@
         </div>
 
         <div class="weather">
-            <h2 id="temp">Tempature: </h2>
+            <p id="temp">Tempature: </p>
+            <p id="tempApparent">Feels Like: </p>
+            <p id="windSpeed">Wind Speed: </p>
+            <p id="snowDepth">Snow Depth: </p>
+            <p id="expectedSnow">Expected Snow: </p>
 
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
-                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                // fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                // .then(res => res.json())
+                // .then(weatherObj => {
+
+                //     console.log(weatherObj)
+
+                //     const daily = weatherObj.timelines.daily[0];
+
+                //     let snowDepth = daily.values.snowDepth.toFixed(1);
+                //     const sd = document.getElementById("snowDepth");
+                //     sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+
+                //     let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
+                //     const es = document.getElementById("expectedSnow");
+                //     es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
+                // })
+                // .catch(err => console.error('Error fetching forecast data:', err));
+
+                fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 .then(res => res.json())
                 .then(weatherObj => {
-                    const daily = weatherObj.timelines.daily[0];
-                    const tempAvg = celsiusToFahrenheit(daily.values.temperatureAvg).toFixed(1);
+                    let time = new Date();
+                    console.log("Weather Data Fetched at: " + time);
+                    console.log(weatherObj)
 
-                    let temp = document.getElementById("temp");
-                    temp.innerHTML = "Tempature: " + tempAvg + " °F";
+                    let liveVars = weatherObj.data.values;
 
-                    
+                    let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
+                    const t = document.getElementById("temp");
+                    t.innerHTML = "Tempature: " + temp + " °F";
+
+                    let tempA = celsiusToFahrenheit(liveVars.temperatureApparent).toFixed(1);
+                    const ta = document.getElementById("tempApparent");
+                    ta.innerHTML = "Feels Like: " + tempA + " °F";
+
+                    let windS = liveVars.windSpeed.toFixed(1);
+                    const wSpeed = document.getElementById("windSpeed");
+                    wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
                 })
-                .catch(err => console.error('Error fetching weather data:', err));
+                .catch(err => console.error('Error fetching live weather data:', err));
             </script>
         </div>
         
