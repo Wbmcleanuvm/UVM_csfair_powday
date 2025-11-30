@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="shortcut icon" href="#">
+<script src="Mountain.js"></script>
+<script src="Review.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +15,41 @@
             text-align: center;
         }
     </style>
+    <script>
+        function fetchReviews(){
+            fetch('ReadCsvData.php?action=review&filename=SugarBushreview.csv')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to read response");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const reviews = convertToReviews(data.message);
+                //console.log(data.message);
+                return reviews;
+            })
+            .catch(error => console.error('Error fetching review data:', error));
+        }
+
+    
+        function fetchTrails() {
+            let trails = [];
+            return fetch('ReadCsvData.php?action=trail&filename=SugarBushtrails.csv')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to read response");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const trails = convertToTrails(data.message);
+                return trails;
+            })
+            .catch(error => console.error('Error fetching trail data:', error));
+        
+        }
+    </script>
 </head>
 <body>
     <div class="navbackground">
@@ -28,5 +66,59 @@
     <h1>
         SugarBush
     </h1>
+
+
+    <div class="reviewSection">
+            <p>Leave a Review </p>
+               <form method="POST" action="append.php">
+
+            Name:<input 
+            type="text" 
+            name="fname" 
+            required 
+            minlength="2" 
+            maxlength="10" 
+            pattern="[A-Za-z]+" 
+            placeholder="Enter username"
+            >
+
+            <br> </br>
+            Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
+            <p>Rating: <output id="value"></output></p>
+
+            <script>
+                const value = document.querySelector("#value");
+                const input = document.querySelector("#input");
+                value.textContent = input.value;
+                input.addEventListener("input", (event) => {
+                value.textContent = event.target.value;
+                });
+            </script>
+
+            <label for="Mnt">Choose a mountain:</label>
+            <select name="mnt" id="Mnt">
+                <option value= SugarBush>SugarBush</option>
+            </select>
+
+            <br></br>
+            <label for="Trail">Choose the trail</label>
+            <select name="Trail" id="Trail"></select>
+            <script>
+                fetchTrails().then((trails) => {
+                let bush = new Mountain("SugarBush", trails);
+                let trailNames = bush.getAllTrailNames();
+                const select = document.getElementById("Trail");
+                trailNames.forEach(trail => {
+                const option = document.createElement("option");
+                option.textContent = trail; 
+                select.appendChild(option);
+            });
+
+            });
+            </script>
+            <input type="button" value="Submit" onclick="this.form.submit()">
+            </form>
+
+        </div>
 </body>
 </html>
