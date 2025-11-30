@@ -7,12 +7,12 @@ class MountainReviews {
     getListOfReviews(){ 
         return this.reviews;
     }
-    getTrailName(idx){
-        x = reviews[idx];
+    getrTrailName(idx){
+        let x = this.reviews[idx];
         return x.getTrailName;
     }
     getUserName(idx){
-        x = reviews[idx];
+        let x = this.reviews[idx];
         return x.getReviewerName;
     }
 }
