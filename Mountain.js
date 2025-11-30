@@ -17,6 +17,9 @@ class Mountain
     getTrail(idx){
         return this.trails[idx];
     }
+    getTrailList(){
+        return this.trails;
+    }
 
     addTrail(trail){
         this.trails.push(t);

@@ -150,3 +150,28 @@ input[type=submit] {
     margin: 30px 5px;
     font-size: clamp(.05rem, 5vw, 1rem);
 }
+
+.container{
+    border-bottom: 1px solid gray;
+    background-color: yellow;
+}
+.trail{
+    font-size: 16px;
+    font-weight: bold;
+}
+.status{
+
+}
+.difficulty{
+    
+}
+.item{
+    font-size: 16px;
+    font-weight: bold;
+}
+.userName{
+    font-size: 14px;
+}
+.rating{
+    color: #0000ff;
+}

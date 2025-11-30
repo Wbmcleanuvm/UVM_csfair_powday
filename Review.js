@@ -3,6 +3,18 @@ class MountainReviews {
         this.mountName = mountName;
         this.reviews = reviews;
     }
+
+    getListOfReviews(){ 
+        return this.reviews;
+    }
+    getrTrailName(idx){
+        let x = this.reviews[idx];
+        return x.getTrailName;
+    }
+    getUserName(idx){
+        let x = this.reviews[idx];
+        return x.getReviewerName;
+    }
 }
 class Review
 {

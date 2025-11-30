@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="#">
     <script src="Mountain.js"></script>
     <script src="Review.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <link rel="stylesheet" href="powdayCSS.css">
 
@@ -22,7 +24,7 @@
         //READ TRAIL DATA SCRIPT and Read review data script
         function fetchReviews(){
         
-            fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
+            return fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to read response");
@@ -192,8 +194,36 @@
         
         <div class="trailStatus">
             <p id="trails">Trail Status<p>
-        </div>
+                <script>
+                    fetchTrails().then((trails) => {
+                    let jay = new Mountain("Jay Peak", trails);
+                    let trailLst = jay.getTrailList();
+                    let s = 1;
+                    var wrapper = $('#wrapper'), container;
+                    while (s < trailLst.length){
+                        let trail = trailLst[s];
+                        let trailName = trail.getName();
+                        let trailStatus = trail.getStatus();
+                        if (trailStatus == "true"){
+                            trailStatus = "✅"
+                        }else{
+                            trailStatus = "❌"
+                        }
+                        let trailDifficulty = trail.getDifficulty();
 
+                        container = $('<div id="Review_item" class="container"></div>');
+                        wrapper.append(container);
+                        container.append('<div class="item">' + trailName +'</div>');
+                        container.append('<div class="userName">' + trailStatus +'</div>');
+                        container.append('<div class="rating">'  + trailDifficulty +'</div>');
+
+                        s++;
+                    }
+
+                    })
+                </script>
+
+        </div>
         <div class="reviewSection">
             <p>Leave a Review </p>
                <form method="POST" action="append.php">
@@ -250,6 +280,39 @@
             </form>
 
         </div>
+
+        <div class ="Reviews">
+            <div id ="wrapper">
+            <script>
+            fetchReviews().then((reviews) => {
+                let jayReviews = new MountainReviews("Jay Peak", reviews);
+                let reviewList = jayReviews.getListOfReviews();
+                
+                let s = 1;
+                var wrapper = $('#wrapper'), container;
+                while (s < reviewList.length){
+                    let review = reviewList[s];
+                    let reviewsTrail = review.getTrailName(s);
+                    let reviewName = review.getReviewerName(s);
+                    let reviewScore = review.getRating(s);
+
+                    container = $('<div id="Review_item" class="container"></div>');
+                    wrapper.append(container);
+                    container.append('<div class="item">' + reviewsTrail +'</div>');
+                    container.append('<div class="userName">' + reviewName +'</div>');
+                    container.append('<div class="rating">'  + reviewScore +'</div>');
+
+                    s++;
+                }
+
+            })
+            </script>   
+
+            </div>
+
+
+        </div>
+
     </div>
 
     <script>
