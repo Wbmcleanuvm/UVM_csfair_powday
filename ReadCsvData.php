@@ -34,11 +34,11 @@ try {
 } catch (Exception $e) {
     $response['error'] = $e->getMessage();
 }
-
+ 
 echo json_encode($response);
 
 function readCsvToMatrix(string $filename, string $delimiter = ','): array {
-    if (!is_readable($filename)) {
+    if (!is_readable($filename)) { 
         throw new Exception("File not found or not readable: $filename");
     }
 
