@@ -22,7 +22,7 @@
         //READ TRAIL DATA SCRIPT and Read review data script
         function fetchReviews(){
         
-            fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
+            return fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to read response");
@@ -201,6 +201,33 @@
             </form>
 
         </div>
+
+        <div class ="Reviews">
+            <div id ="wrapper">
+            <script>
+            fetchReviews().then((reviews) => {
+                let jayReviews = new MountainReviews("Jay Peak", reviews);
+                let reviewList = jayReviews.getListOfReviews();
+                
+                let s = 0;
+                var wrapper = ('#wrapper'), container;
+                while (s < reviewList.length()){
+                    container = ('<div id="Review_item" class="container"></div>');
+                    wrapper.append(container);
+                    container.append('<div class="item">' + reviewList.getTrailName(s) +'</div>');
+                    container.append('<div class="userName">' + reviewList.getUserName(s) +'</div>');
+
+
+                }
+
+            })
+            </script>   
+
+            </div>
+
+
+        </div>
+
     </div>
 
     
