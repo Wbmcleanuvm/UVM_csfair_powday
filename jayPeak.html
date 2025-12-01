@@ -138,15 +138,9 @@
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
                 // Fetch forecast data from Tomorrow.io API
-<<<<<<< HEAD
-                /*fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
-=======
                 // fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 // .then(res => res.json())
                 // .then(weatherObj => {
->>>>>>> f771b554f9a61bd54c5e5931a85c26cef95e6966
 
                 //     console.log(weatherObj)
 
@@ -156,21 +150,12 @@
                 //     const sd = document.getElementById("snowDepth");
                 //     sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
 
-<<<<<<< HEAD
-                    let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
-                    const es = document.getElementById("expectedSnow");
-                    es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
-                })
-                .catch(err => console.error('Error fetching forecast data:', err));
-                */
-=======
                 //     let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
                 //     const es = document.getElementById("expectedSnow");
                 //     es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
                 // })
                 // .catch(err => console.error('Error fetching forecast data:', err));
 
->>>>>>> f771b554f9a61bd54c5e5931a85c26cef95e6966
                 // Fetch real-time weather data from Tomorrow.io API
                 fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 .then(res => res.json())
@@ -324,16 +309,6 @@
         </div>
 
     <script>
-<<<<<<< HEAD
-        /*fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to read response");
-            }
-            return response.json();
-        })
-        */
-=======
         // fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
         // .then(response => {
         //     if (!response.ok) {
@@ -341,7 +316,6 @@
         //     }
         //     return response.json();
         // })
->>>>>>> f771b554f9a61bd54c5e5931a85c26cef95e6966
         // .then(data => {
         //     //Smuggs is the Mountain object created in mountain.js, used to call its methods
         //     convertToTrails( "Jay Peak", data.message);
