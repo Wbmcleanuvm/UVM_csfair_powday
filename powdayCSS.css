@@ -1,8 +1,18 @@
 body {
-    font-family: fantasy;
+    font-family: Brunson;
     margin: 0;
     padding: 0;
     background-color: rgb(122, 133, 143);
+}
+
+@font-face {
+    font-family: Brunson;
+    src: url("Fonts/brunson/Brunson.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: Coluna;
+    src: url("Fonts/coluna/Coluna.otf") format("opentype");
 }
 
 form{
@@ -109,6 +119,16 @@ input[type=submit] {
     align-items: start;
 }
 
+h1 {
+    position: fixed;
+    font-family: Coluna;
+    text-align: center;
+    font-size: clamp(1rem, 5vw, 2rem);
+    margin: 0px 0px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+}
+
 .navbackground 
 {
     position: relative;
@@ -145,6 +165,7 @@ input[type=submit] {
     padding: 15px 30px;
     text-decoration: none;
     text-align: center;
+    font-family: fantasy;
     transition: transform .25s ease-in-out;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
@@ -195,4 +216,18 @@ input[type=submit] {
 }
 .rating{
     color: #0000ff;
+}
+
+#temp 
+{
+    font-size: 30px;
+    text-align: center;
+    margin: 0px;
+}
+
+#tempApparent 
+{
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
 }
