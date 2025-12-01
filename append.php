@@ -6,7 +6,7 @@ $mnt = $filename = $_POST['mnt'];
 $trail = $_POST['Trail'];
 
 // Open the CSV file in append mode
-if($csv = fopen("{$filename}review.csv", "a")){
+if($csv = fopen("{$filename}review.csv", "r")){
     // Define the row to be appended
     $row = [$name, $rating, $mnt, $trail];
     // Append the row to the CSV file
@@ -19,8 +19,6 @@ if($csv = fopen("{$filename}review.csv", "a")){
 }else{
     die("Failed to Submit Review");
 }
-
-
 
 //extension.phpServer.reloadServer
 // CTRL + SHFT + P:   PHP Server: Stop project
