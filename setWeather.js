@@ -42,9 +42,9 @@ function getWeather(MountCords){
 
 function WriteWeather(){
     let errorFlag = false;
-    let BoltonData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.5362,-72.8687&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
-    let SmuggsData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.4875,-72.7831&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
-    let BushData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.1716,-72.6815&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+    let BoltonData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.414952, -72.834285&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+    let SmuggsData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.55742768018786, -72.77427625520981&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+    let BushData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.160883860486656, -72.92925461746343&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
     let JayData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
 
     
