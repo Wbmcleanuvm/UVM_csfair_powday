@@ -28,8 +28,8 @@ function WritetoCsv($data): void{
     if ($csv = fopen('storeWeather.csv', 'w')){
         for($row = 0; $row < 4; $row++){
             for($col = 0; $col < 3; $col++){
-                fputcsv($csv, ["zachs a faggot"]);
-                //fputcsv($csv,$WeatherData[$row][$col], escape: "");
+                //putcsv($csv, ["zachs a faggot"]);
+                fputcsv($csv,$WeatherData[$row][$col], escape: "");
             }
         }
     fclose($csv);

@@ -42,62 +42,39 @@ function getWeather(MountCords){
 
 function WriteWeather(){
     let errorFlag = false;
+    let BoltonData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.5362,-72.8687&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+    let SmuggsData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.4875,-72.7831&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+    let BushData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.1716,-72.6815&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
     let JayData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
+
+    
+    //checks if server is allowing data fetch
     getWeather(JayData).then(jayWeather => {
     if (jayWeather == 1){
         errorFlag = true;
     }
     })
     if (errorFlag = false){
-   
+        //clears old data
+        $.ajax({
+        url: 'weatherWrite.php',
+        type: 'POST',
+        data: { functionName: 'clearCsvCache' },
+        dataType: 'text',
+        success: function(response) {
+            console.log("✅ Server responded:", response);
+        },
+        error: function(xhr, status, error) {
+            console.error("❌ AJAX error:", status, error);
+            console.error("Response text:", xhr.responseText);
+        }
+    });
 
-    let BoltonData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.5362,-72.8687&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
-    let SmuggsData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.4875,-72.7831&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
-    let BushData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.1716,-72.6815&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
     getWeather(JayData).then(jayWeather => {
         getWeather(BoltonData).then(boltonWeather => {
             getWeather(SmuggsData).then(smuggsWeather => {
                 getWeather(BushData).then(bushWeather => {
-                    //let weatherArray = [jayWeather, boltonWeather, smuggsWeather, bushWeather];
-                    
-
-
-                })
-            })    
-        })
-    })
-    }else{
-        console.log("Weather Write Aborted due to error flag.");
-    }
-
-
-
-     //clears old data
-    $.ajax({
-    url: 'weatherWrite.php',
-    type: 'POST',
-    data: { functionName: 'clearCsvCache' },
-    dataType: 'text',
-    success: function(response) {
-        console.log("✅ Server responded:", response);
-    },
-    error: function(xhr, status, error) {
-        console.error("❌ AJAX error:", status, error);
-        console.error("Response text:", xhr.responseText);
-    }
-    });
-
-///////////////////////////////////////////////
-
-    col = []
-                    let weatherArray = []
-                    for (let r=0; r < 4; r++){
-                        for(let c = 0; c<3; c++){
-                            col.push("hi");
-                        }
-                        weatherArray.push(col);
-                        col = [];
-                    }
+                    let weatherArray = [jayWeather, boltonWeather, smuggsWeather, bushWeather];
                     $.ajax({
                         url: 'weatherWrite.php',
                         type: 'POST',
@@ -112,5 +89,22 @@ function WriteWeather(){
                     }
                     });
                     
+
+
+                })
+            })    
+        })
+    })
+    }else{
+        console.log("Weather Write Aborted due to error flag.");
+    }
+
+
+
+    
+
+///////////////////////////////////////////////
+
+    
 
 }
