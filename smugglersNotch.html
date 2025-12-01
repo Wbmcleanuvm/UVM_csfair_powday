@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smugglers Notch</title>
     <link rel="shortcut icon" href="#">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="Review.js"></script>
     <link rel="stylesheet" href="powdayCSS.css">
 
     <style>
@@ -14,28 +15,12 @@
             text-align: center;
         }
     </style>
-</head>
-<body>
-    <div class="navbackground">
-        <div class="navbar">
-            <a href="jayPeak.html">Jay Peak</a>
-            <a href="boltonValley.html">Bolton Valley</a>
-            <a href="sugarBush.html">SugarBush</a>
-            <a href="smugglersNotch.html">SmugglersNotch</a>
-            <a href="reviewForm.html">Review</a>
-            <a href="index.html">Home</a>
-        </div>
-    </div>
 
-    <h1>
-        Smuggler Notch
-    </h1>
-    
     <script>
         //read reviews
         function fetchReviews(){
         
-            fetch('ReadCsvData.php?action=review&filename=SmugglersNotchreviews.csv')
+            return fetch('ReadCsvData.php?action=review&filename=SmugglersNotchreviews.csv')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to read response");
@@ -66,17 +51,67 @@
                 
             })
             .catch(error => console.error('Error fetching trail data:', error));
-        
         }
-        fetchTrails().then((trails) => {
-        //working example of how to use the Mountain class after fetching trail data
-        let smuggs = new Mountain("Smugglers Notch", trails);
-        let trailNames = smuggs.getAllTrailNames();
-        //console.log(smuggs.getTrailName(2));
-        });
 
     </script>
 
+</head>
+<body>
+    <div class="navbackground">
+        <div class="navbar">
+            <a href="jayPeak.html">Jay Peak</a>
+            <a href="boltonValley.html">Bolton Valley</a>
+            <a href="sugarBush.html">SugarBush</a>
+            <a href="smugglersNotch.html">SmugglersNotch</a>
+            <a href="reviewForm.html">Review</a>
+            <a href="index.html">Home</a>
+        </div>
+    </div>
+
+    <h1>
+        Smuggler Notch
+    </h1>
+        <div class="trailStatus">
+            <div id ="wrapper">
+            <p id="trails">Trail Status<p>
+            <script>
+            fetchTrails().then((trails) => {
+                let smuggs = new Mountain("Smugglers Notch", trails);
+                let trailLst = smuggs.getTrailList();
+                let s = 1;
+                var wrapper = $('#wrapper'), container;
+                while (s < trailLst.length){
+                    let trail = trailLst[s];
+                    let trailName = trail.getName();
+                    let trailStatus = trail.getStatus();
+                    let trailDifficulty = trail.getDifficulty();
+                    if (trailStatus == "true"){
+                        trailStatus = "Status: ✅"
+                    }else{
+                        trailStatus = "Status: ❌"
+                    }
+                    
+                    if (trailDifficulty == "Easy"){
+                        trailDifficulty += "🟢";
+                    }else if (trailDifficulty == "Intermediate"){
+                        trailDifficulty += "🔵";
+                    }else if (trailDifficulty == "Advanced"){
+                        trailDifficulty += "⚫";
+                    }else{
+                        trailDifficulty += "🌲";
+                    }
+                    container = $('<div id="Review_item" class="container"></div>');
+                    wrapper.append(container);
+                    container.append('<div class="trail">' + trailName +'</div>');
+                    container.append('<div class="status">' + trailStatus +'</div>');
+                    container.append('<div class="difficulty">'  + trailDifficulty +'</div>');
+                    s++;
+                }
+
+            })
+            </script>
+            </div>
+        </div>
 
         <div class="reviewSection">
             <p>Leave a Review </p>

@@ -212,13 +212,20 @@
                             trailStatus = "❌"
                         }
                         let trailDifficulty = trail.getDifficulty();
-
+                        if (trailDifficulty == "Begginer"){
+                            trailDifficulty += "🟢";
+                        }else if (trailDifficulty == "Intermediate"){
+                            trailDifficulty += "🔵";
+                        }else if (trailDifficulty == "Advanced"){
+                            trailDifficulty += "⚫";
+                        }else{
+                            trailDifficulty += "🌲";
+                        }
                         container = $('<div id="Review_item" class="container"></div>');
                         wrapper.append(container);
                         container.append('<div class="item">' + trailName +'</div>');
                         container.append('<div class="userName">' + trailStatus +'</div>');
                         container.append('<div class="rating">'  + trailDifficulty +'</div>');
-
                         s++;
                     }
 

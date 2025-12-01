@@ -3,6 +3,7 @@
 <link rel="shortcut icon" href="#">
 <script src="Mountain.js"></script>
 <script src="Review.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
     </style>
     <script>
         function fetchReviews(){
-            fetch('ReadCsvData.php?action=review&filename=SugarBushreview.csv')
+            return fetch('ReadCsvData.php?action=review&filename=SugarBushreview.csv')
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to read response");
@@ -66,6 +67,45 @@
     <h1>
         SugarBush
     </h1>
+    <div class="trailStatus">
+    <div id ="wrapper">
+    <p id="trails">Trail Status<p>
+    <script>
+        fetchTrails().then((trails) => {
+            let bush = new Mountain("Sugarbush", trails);
+            let trailLst = bush.getTrailList();
+            let s = 1;
+            var wrapper = $('#wrapper'), container;
+            while (s < trailLst.length){
+                let trail = trailLst[s];
+                let trailName = trail.getName();
+                let trailStatus = trail.getStatus();
+                let trailDifficulty = trail.getDifficulty();
+                if (trailStatus == "true"){
+                    trailStatus = "✅"
+                }else{
+                    trailStatus = "❌"
+                }
+                    
+                if (trailDifficulty == "Easy"){
+                    trailDifficulty += "🟢";
+                }else if (trailDifficulty == "Intermediate"){
+                    trailDifficulty += "🔵";
+                }else if (trailDifficulty == "Advanced"){
+                    trailDifficulty += "⚫";
+                }else{
+                    trailDifficulty += "🌲";
+                }
+                container = $('<div id="Review_item" class="container"></div>');
+                wrapper.append(container);
+                container.append('<div class="item">' + trailName +'</div>');
+                container.append('<div class="userName">' + trailStatus +'</div>');
+                container.append('<div class="rating">'  + trailDifficulty +'</div>');
+                s++;
+            }
+        })
+    </script>
+    </div>
 
 
     <div class="reviewSection">

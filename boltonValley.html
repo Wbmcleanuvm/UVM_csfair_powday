@@ -6,6 +6,7 @@
     <title>Bolton Valley</title>
     <script src="Mountain.js"></script>
     <script src="Review.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="shortcut icon" href="#">
 
     <script>
@@ -69,8 +70,46 @@
         Bolton Valley
     </h1>
 
-    <!--https://snowstash.com/usa/vermont/bolton-valley/snow-report  snow report-->
+    <div class="trailStatus">
+        <div id ="wrapper">
+        <p id="trails">Trail Status<p>
+        <script>
+            fetchTrails().then((trails) => {
+                let smuggs = new Mountain("Smugglers Notch", trails);
+                let trailLst = smuggs.getTrailList();
+                let s = 1;
+                var wrapper = $('#wrapper'), container;
+                while (s < trailLst.length){
+                    let trail = trailLst[s];
+                    let trailName = trail.getName();
+                    let trailStatus = trail.getStatus();
+                    let trailDifficulty = trail.getDifficulty();
+                    if (trailStatus == "true"){
+                        trailStatus = "✅"
+                    }else{
+                        trailStatus = "❌"
+                    }
+                    
+                    if (trailDifficulty == "Easy"){
+                        trailDifficulty += "🟢";
+                    }else if (trailDifficulty == "Intermediate"){
+                        trailDifficulty += "🔵";
+                    }else if (trailDifficulty == "Advanced"){
+                        trailDifficulty += "⚫";
+                    }else{
+                        trailDifficulty += "🌲";
+                    }
+                    container = $('<div id="Review_item" class="container"></div>');
+                    wrapper.append(container);
+                    container.append('<div class="item">' + trailName +'</div>');
+                    container.append('<div class="userName">' + trailStatus +'</div>');
+                    container.append('<div class="rating">'  + trailDifficulty +'</div>');
+                    s++;
+                }
 
+            })
+        </script>
+        </div>
     <div class="reviewSection">
             <p>Leave a Review </p>
                <form method="POST" action="append.php">
