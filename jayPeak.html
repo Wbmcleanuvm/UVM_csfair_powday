@@ -149,24 +149,26 @@
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
-                // fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                // .then(res => res.json())
-                // .then(weatherObj => {
+                // Fetch forecast data from Tomorrow.io API
+                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                .then(res => res.json())
+                .then(weatherObj => {
 
-                //     console.log(weatherObj)
+                    console.log(weatherObj)
 
-                //     const daily = weatherObj.timelines.daily[0];
+                    const daily = weatherObj.timelines.daily[0];
 
-                //     let snowDepth = daily.values.snowDepth.toFixed(1);
-                //     const sd = document.getElementById("snowDepth");
-                //     sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+                    let snowDepth = daily.values.snowDepth.toFixed(1);
+                    const sd = document.getElementById("snowDepth");
+                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
 
-                //     let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
-                //     const es = document.getElementById("expectedSnow");
-                //     es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
-                // })
-                // .catch(err => console.error('Error fetching forecast data:', err));
+                    let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
+                    const es = document.getElementById("expectedSnow");
+                    es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
+                })
+                .catch(err => console.error('Error fetching forecast data:', err));
 
+                // Fetch real-time weather data from Tomorrow.io API
                 fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 .then(res => res.json())
                 .then(weatherObj => {

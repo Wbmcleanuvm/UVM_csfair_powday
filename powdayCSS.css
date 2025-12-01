@@ -51,8 +51,8 @@ input[type=submit] {
 
 .map
 {
-    height: 350px; 
-    width: 500px; 
+    height: 400px; 
+    width: 700px; 
     background-color: rgb(134, 168, 214); 
     filter: brightness(75%); 
     border-radius: 12px; 
