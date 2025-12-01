@@ -61,8 +61,7 @@
 
     </script>    
 
-    <style>
-        #map { height: 350px; width: 500px; background-color: rgb(134, 168, 214); filter: brightness(75%); border-radius: 12px; justify-self: left}
+    <style> 
 
         h1 
         {
@@ -89,11 +88,11 @@
         </div>
     </div>
 
-    <header>
+    <!-- <header>
         <h1>
             ❄️ JAY PEAK ❄️
         </h1>
-    </header>
+    </header> -->
 
     <div class="mainGrid">
         <div class="mapHighlight">
@@ -115,6 +114,7 @@
 
                     map.fitBounds(bounds);
                     map.setMaxBounds(bounds);
+                    map.setView([heightPix / 2 + 100, widthPix / 2 + 100], 0);
 
                     let closed = false;
 
@@ -123,24 +123,12 @@
                         const marker = L.marker([bounds[1][0] / 2, bounds[1][1] / 2]).addTo(map);
                         marker.bindTooltip("Mountain Closed").openTooltip();
                     }
-
-                    // const trailCoords = [
-                    //     [120, 220],
-                    //     [180, 300],
-                    //     [260, 360],
-                    //     [400, 480]
-                    // ];
-
-                    // L.polyline(trailCoords, {
-                    //     color: "red",
-                    //     weight: 4
-                    // }).addTo(map);
                 </script>
             </div>
         </div>
 
         <div class="weather">
-            <p id="temp">Tempature: </p>
+            <p id="temp">Current Temperature </p>
             <p id="tempApparent">Feels Like: </p>
             <p id="windSpeed">Wind Speed: </p>
             <p id="snowDepth">Snow Depth: </p>
@@ -150,23 +138,23 @@
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
                 // Fetch forecast data from Tomorrow.io API
-                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
+                // fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                // .then(res => res.json())
+                // .then(weatherObj => {
 
-                    console.log(weatherObj)
+                //     console.log(weatherObj)
 
-                    const daily = weatherObj.timelines.daily[0];
+                //     const daily = weatherObj.timelines.daily[0];
 
-                    let snowDepth = daily.values.snowDepth.toFixed(1);
-                    const sd = document.getElementById("snowDepth");
-                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+                //     let snowDepth = daily.values.snowDepth.toFixed(1);
+                //     const sd = document.getElementById("snowDepth");
+                //     sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
 
-                    let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
-                    const es = document.getElementById("expectedSnow");
-                    es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
-                })
-                .catch(err => console.error('Error fetching forecast data:', err));
+                //     let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
+                //     const es = document.getElementById("expectedSnow");
+                //     es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
+                // })
+                // .catch(err => console.error('Error fetching forecast data:', err));
 
                 // Fetch real-time weather data from Tomorrow.io API
                 fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
@@ -193,46 +181,7 @@
                 .catch(err => console.error('Error fetching live weather data:', err));
             </script>
         </div>
-        
-        <div class="trailStatus">
-            <p id="trails">Trail Status<p>
-                <script>
-                    fetchTrails().then((trails) => {
-                    let jay = new Mountain("Jay Peak", trails);
-                    let trailLst = jay.getTrailList();
-                    let s = 1;
-                    var wrapper = $('#wrapper'), container;
-                    while (s < trailLst.length){
-                        let trail = trailLst[s];
-                        let trailName = trail.getName();
-                        let trailStatus = trail.getStatus();
-                        if (trailStatus == "true"){
-                            trailStatus = "✅"
-                        }else{
-                            trailStatus = "❌"
-                        }
-                        let trailDifficulty = trail.getDifficulty();
-                        if (trailDifficulty == "Begginer"){
-                            trailDifficulty += "🟢";
-                        }else if (trailDifficulty == "Intermediate"){
-                            trailDifficulty += "🔵";
-                        }else if (trailDifficulty == "Advanced"){
-                            trailDifficulty += "⚫";
-                        }else{
-                            trailDifficulty += "🌲";
-                        }
-                        container = $('<div id="Review_item" class="container"></div>');
-                        wrapper.append(container);
-                        container.append('<div class="item">' + trailName +'</div>');
-                        container.append('<div class="userName">' + trailStatus +'</div>');
-                        container.append('<div class="rating">'  + trailDifficulty +'</div>');
-                        s++;
-                    }
 
-                    })
-                </script>
-
-        </div>
         <div class="reviewSection">
             <p>Leave a Review </p>
                <form method="POST" action="append.php">
@@ -290,7 +239,47 @@
 
         </div>
 
-        <div class ="Reviews">
+    </div>
+
+    <div class ="Reviews">
+        <div class="trailStatus">
+                <p id="trails">Trail Status<p>
+                <script>
+                    fetchTrails().then((trails) => {
+                    let jay = new Mountain("Jay Peak", trails);
+                    let trailLst = jay.getTrailList();
+                    let s = 1;
+                    var wrapper = $('#wrapper'), container;
+                    while (s < trailLst.length){
+                        let trail = trailLst[s];
+                        let trailName = trail.getName();
+                        let trailStatus = trail.getStatus();
+                        if (trailStatus == "true"){
+                            trailStatus = "✅"
+                        }else{
+                            trailStatus = "❌"
+                        }
+                        let trailDifficulty = trail.getDifficulty();
+                        if (trailDifficulty == "Begginer"){
+                            trailDifficulty += "🟢";
+                        }else if (trailDifficulty == "Intermediate"){
+                            trailDifficulty += "🔵";
+                        }else if (trailDifficulty == "Advanced"){
+                            trailDifficulty += "⚫";
+                        }else{
+                            trailDifficulty += "🌲";
+                        }
+                        container = $('<div id="Review_item" class="container"></div>');
+                        wrapper.append(container);
+                        container.append('<div class="item">' + trailName +'</div>');
+                        container.append('<div class="userName">' + trailStatus +'</div>');
+                        container.append('<div class="rating">'  + trailDifficulty +'</div>');
+                        s++;
+                    }
+
+                    })
+                </script>
+            </div>
             <div id ="wrapper">
             <script>
             fetchReviews().then((reviews) => {
@@ -316,22 +305,17 @@
 
             })
             </script>   
-
-            </div>
-
-
+            <div>
         </div>
 
-    </div>
-
     <script>
-        fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to read response");
-            }
-            return response.json();
-        })
+        // fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
+        // .then(response => {
+        //     if (!response.ok) {
+        //         throw new Error("Failed to read response");
+        //     }
+        //     return response.json();
+        // })
         // .then(data => {
         //     //Smuggs is the Mountain object created in mountain.js, used to call its methods
         //     convertToTrails( "Jay Peak", data.message);
