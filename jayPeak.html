@@ -160,8 +160,8 @@
                 .then(res => res.json())
                 .then(weatherObj => {
                     let time = new Date();
-                    console.log("Weather Data Fetched at: " + time);
-                    console.log(weatherObj)
+                    //console.log("Weather Data Fetched at: " + time);
+                    //console.log(weatherObj)
 
                     let liveVars = weatherObj.data.values;
                     let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
