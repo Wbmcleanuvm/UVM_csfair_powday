@@ -20,46 +20,6 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-    <script>
-        //READ TRAIL DATA SCRIPT and Read review data script
-        function fetchReviews(){
-        
-            return fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to read response");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const reviews = convertToReviews(data.message);
-                //console.log(data.message);
-                return reviews;
-            })
-            .catch(error => console.error('Error fetching review data:', error));
-        }
-
-        let trails = [];
-        function fetchTrails() {
-    
-            return fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to read response");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const trails = convertToTrails(data.message);
-                return trails;
-            })
-            .catch(error => console.error('Error fetching trail data:', error));
-        
-        }
-        
-        
-
-    </script>    
 
     <style> 
 
@@ -163,9 +123,10 @@
                     //console.log("Weather Data Fetched at: " + time);
                     //console.log(weatherObj)
 
+
                     let liveVars = weatherObj.data.values;
                     let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
-
+                    
                     // Weather Icon Mapping
                     const iconMap = {
                         1000: "10000_clear_small@2x.png",
@@ -251,7 +212,8 @@
             <label for="Trail">Choose the trail</label>
             <select name="Trail" id="Trail"></select>
             <script>
-                fetchTrails().then((trails) => {
+                let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv';
+                fetchTrails(trailsPath).then((trails) => {
                 let jay = new Mountain("Jay Peak", trails);
                 let trailNames = jay.getAllTrailNames();
                 const select = document.getElementById("Trail");
@@ -279,7 +241,7 @@
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
                 <script>
-                    fetchTrails().then((trails) => {
+                    fetchTrails(trailsPath).then((trails) => {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailLst = jay.getTrailList();
                     let s = 1;
@@ -316,7 +278,8 @@
             </div>
             <div id ="wrapper">
             <script>
-            fetchReviews().then((reviews) => {
+            let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+            fetchReviews(reviewsPath).then((reviews) => {
                 let jayReviews = new MountainReviews("Jay Peak", reviews);
                 let reviewList = jayReviews.getListOfReviews();
                 

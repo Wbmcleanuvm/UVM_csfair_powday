@@ -79,3 +79,20 @@ function convertToReviews(reviewData){
     }*/
    return reviews;
 }
+
+function fetchReviews(actionpath){
+        
+            return fetch(actionpath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to read response");
+                }
+                return response.json();
+            })
+            .then(data => {
+                //const reviews = convertToReviews(data.message);
+                //console.log(data.message);
+                return reviews;
+            })
+            .catch(error => console.error('Error fetching review data:', error));
+        }

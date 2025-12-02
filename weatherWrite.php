@@ -1,9 +1,4 @@
 <?php
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
-error_reporting(E_ALL);
-
-assert("we aint even here");
 
 if (isset($_POST['functionName'])) {
     if ($_POST['functionName'] === 'WritetoCsv') {
@@ -14,6 +9,10 @@ if (isset($_POST['functionName'])) {
     if ($_POST['functionName'] === 'clearCsvCache') {
         clearCsvCache();
     }
+    if ($_POST['functionName'] === 'readWeatherCsv'){
+
+    }
+
 }
 
 
@@ -26,15 +25,26 @@ function WritetoCsv($data): void{
     $WeatherData = json_decode($data, true);
 
     if ($csv = fopen('storeWeather.csv', 'w')){
-        for($row = 0; $row < 4; $row++){
-            for($col = 0; $col < 3; $col++){
-                //putcsv($csv, ["zachs a faggot"]);
-                fputcsv($csv,$WeatherData[$row][$col], escape: "");
-            }
+        $i = 0;
+        while ($i < count($WeatherData)){
+            fputcsv($csv,$WeatherData[$i], escape: "");
+            $i++;
         }
     fclose($csv);
     }
-   
+   exit();
+
+}
+
+function readWeatherCsv(){
+    $data = [];
+    if ($csv = fopen('storeWeather.csv', 'r')){
+        while (($row = fgetcsv($csv)) !== false) {
+            $data[] = $row;
+        }
+    }
+    return $data;
+    
 
 }
 
