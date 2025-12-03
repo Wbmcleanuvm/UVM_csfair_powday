@@ -3,6 +3,9 @@ script.src = 'https://code.jquery.com/jquery-3.6.3.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 class weatherData{
     constructor(temp, feesLike, windSpeed){
+        this.temp = temp;
+        this.feelsLike = feelsLike;
+        this.windSpeed = windSpeed;
         
     }
 }
@@ -73,15 +76,17 @@ function getWeather(MountCords){
 
             let snowIntensity = liveVars.snowIntensity.toFixed(2);
             let rainIntensity = liveVars.rainIntensity.toFixed(2);
-            let isRaining, isSnowing = false;
+            let isRaining, isSnowing = 0;
             if (snowIntensity > rainIntensity) {
-                isSnowing = true;
+                isSnowing = 1;
                 listOfData.push(isSnowing);
-            }  else 
+            }else if (snowIntensity < rainIntensity)
             {
-                    isRaining = true
-                    listOfData.push(isRaining);
-            }  
+                isRaining = 2
+                listOfData.push(isRaining);
+            }else{
+                listOfData.push(3)
+            }
 
             let weatherCode = liveVars.weatherCode;
             listOfData.push(weatherCode);
@@ -99,20 +104,23 @@ function WriteWeather(){
     let SmuggsData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.55742768018786, -72.77427625520981&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
     let BushData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.160883860486656, -72.92925461746343&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
     let JayData = 'https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD'
-
+    let errorFlag = false;
     
-    //checks if server is allowing data fetch
-   
     getWeather(JayData).then(jayWeather => {
-        if (jayWeather === 1){
-            console.log("Too many requests, weather write aborted.");
-        }else{
         getWeather(BoltonData).then(boltonWeather => {
             sleep(2000).then(() => {
                 getWeather(SmuggsData).then(smuggsWeather => {
                     getWeather(BushData).then(bushWeather => {
                         let header = ["temp","feelslike", "windspeed"];
                         let weatherArray = [header,jayWeather, boltonWeather, smuggsWeather, bushWeather];
+                        //checks if server is allowing data fetch
+                        for(let i = 1; i < weatherArray.length; i++){
+                            if (weatherArray[i] === 1){
+                                errorFlag = true;
+                                break;
+                            }
+                        }
+                        if (errorFlag == false){
                         $.ajax({
                             url: 'weatherWrite.php',
                             type: 'POST',
@@ -122,11 +130,14 @@ function WriteWeather(){
                             console.error("Response text:", xhr.responseText);
                             }
                         })
+                    }else{
+                        console.log("Weather write aborted, rate limited")
+                    }
                     })
                 })
             })
         })
-        }
+        
     })
 
 }
