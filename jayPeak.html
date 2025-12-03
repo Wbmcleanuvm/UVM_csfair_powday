@@ -20,46 +20,6 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-    <script>
-        //READ TRAIL DATA SCRIPT and Read review data script
-        function fetchReviews(){
-        
-            return fetch('ReadCsvData.php?action=review&filename=JayPeakreview.csv')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to read response");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const reviews = convertToReviews(data.message);
-                //console.log(data.message);
-                return reviews;
-            })
-            .catch(error => console.error('Error fetching review data:', error));
-        }
-
-        let trails = [];
-        function fetchTrails() {
-    
-            return fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to read response");
-                }
-                return response.json();
-            })
-            .then(data => {
-                const trails = convertToTrails(data.message);
-                return trails;
-            })
-            .catch(error => console.error('Error fetching trail data:', error));
-        
-        }
-        
-        
-
-    </script>    
 
     <style> 
 
@@ -159,12 +119,13 @@
                 .catch(err => console.error('Error fetching forecast data:', err));
 
                 // Fetch real-time weather data from Tomorrow.io API
-                fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                /*fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 .then(res => res.json())
                 .then(weatherObj => {
                     let time = new Date();
                     console.log("Weather Data Fetched at: " + time);
                     console.log(weatherObj)
+
 
                     let liveVars = weatherObj.data.values;
                     let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
@@ -214,9 +175,8 @@
                     let windS = liveVars.windSpeed.toFixed(1);
                     const wSpeed = document.getElementById("windSpeed");
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
-
                 })
-                .catch(err => console.error('Error fetching live weather data:', err));
+                .catch(err => console.error('Error fetching live weather data:', err));*/
             </script>
             <div class="reviewSection">
                 <p id="leaveReview">Leave a Review </p>
@@ -267,6 +227,29 @@
                 
                 });
                 </script>
+            <label for="Mnt">Choose a mountain:</label>
+            <select name="mnt" id="Mnt">
+            <option value=JayPeak > Jay Peak</option>
+            </select>
+            <br></br>
+            <label for="Trail">Choose the trail</label>
+            <select name="Trail" id="Trail"></select>
+            <script>
+                let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv';
+                fetchTrails(trailsPath).then((trails) => {
+                let jay = new Mountain("Jay Peak", trails);
+                let trailNames = jay.getAllTrailNames();
+                const select = document.getElementById("Trail");
+                trailNames.forEach(trail => {
+                const option = document.createElement("option");
+                option.textContent = trail; 
+                select.appendChild(option);
+            });
+
+            
+            
+            });
+            </script>
 
 
 
@@ -279,7 +262,7 @@
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
                 <script>
-                    fetchTrails().then((trails) => {
+                    fetchTrails(trailsPath).then((trails) => {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailLst = jay.getTrailList();
                     let s = 1;
@@ -310,7 +293,8 @@
             </div>
             <div id ="wrapper">
             <script>
-            fetchReviews().then((reviews) => {
+            let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+            fetchReviews(reviewsPath).then((reviews) => {
                 let jayReviews = new MountainReviews("Jay Peak", reviews);
                 let reviewList = jayReviews.getListOfReviews();
                 

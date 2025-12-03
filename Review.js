@@ -71,11 +71,22 @@ function convertToReviews(reviewData){
         i++;
 
     }
-    /* functionality test 
-    let s = 0;
-    while (s<reviews.length){
-        console.log(reviews[s]);
-        s++;
-    }*/
    return reviews;
 }
+
+function fetchReviews(actionpath){
+        
+            return fetch(actionpath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to read response");
+                }
+                return response.json();
+            })
+            .then(data => {
+                //const reviews = convertToReviews(data.message);
+                //console.log(data.message);
+                return reviews;
+            })
+            .catch(error => console.error('Error fetching review data:', error));
+        }

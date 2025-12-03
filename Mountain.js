@@ -55,6 +55,21 @@ class Mountain
 
     }
 }
+function fetchTrails(mountPath) {
+            return fetch(mountPath)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to read response");
+                }
+                return response.json();
+            })
+            .then(data => {
+                const trails = convertToTrails(data.message);
+                return trails;
+            })
+            .catch(error => console.error('Error fetching trail data:', error));
+        
+}
 
 function convertToTrails(trailData){
     let add = "";

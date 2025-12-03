@@ -2,9 +2,12 @@
 <html lang="en">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="shortcut icon" href="#">
-<script src="setWeather.js"></script>
+<script src="Weather.js"></script>
 <script>
-    WriteWeather();
+    weatherRead().done(function(read) {
+        console.log(read[1]);
+    });
+    //WriteWeather();
 </script>
 
 <head>
