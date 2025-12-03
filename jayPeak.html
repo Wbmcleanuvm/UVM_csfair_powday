@@ -199,6 +199,18 @@
                         let reviewList = jayReviews.getListOfReviews();
                         let Jay = new Mountain("Jay Peak", trails);
                         let trailLst = Jay.getTrailList();
+                        let jayTrails = new Mountain("Jay Peak", trails);
+                        let revLst = jayReviews.getListOfReviews();
+                        let r = 1;
+                        while(r < revLst.length - 1){
+                            for(let i = 1; i < trailLst.length; i++){
+                                if(trailLst[i].getName() == revLst[r].getTrailName()){
+                                    let add = revLst[r].getRating();
+                                    console.log(add);
+                                    trailLst[i].addRating(add);                                        r++
+                                }
+                            }
+                        }
                         let s = 1;
                         let ul = $("#reviewSection").find("ul");[0];
                         while (s < reviewList.length) {

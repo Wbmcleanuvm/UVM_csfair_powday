@@ -1,5 +1,3 @@
-mountList = [];
-
 class Mountain 
 {
     #mountName;
@@ -127,14 +125,15 @@ class trail
         this.#difficulty = difficulty;
         this.#status = status;
         this.rating = 0;
-        this.numRatings;
+        this.numRatings = 0;
     }
     addRating(rating){
         this.numRatings += 1;
-        newRating = (getRating() + rating) / this.numRatings;
+        let newRating = (this.rating + rating) / this.numRatings;
+        this.rating = newRating
     }
     getRating(){
-        return this.getRating();
+        return this.rating;
     }
     getName(){
         return this.#name;
@@ -149,3 +148,4 @@ class trail
         this.difficulty = difficulty;
     }
 }
+

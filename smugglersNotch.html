@@ -53,21 +53,7 @@
                     let trailName = trail.getName();
                     let trailStatus = trail.getStatus();
                     let trailDifficulty = trail.getDifficulty();
-                    if (trailStatus == "true"){
-                        trailStatus = "Status: ✅"
-                    }else{
-                        trailStatus = "Status: ❌"
-                    }
                     
-                    if (trailDifficulty == "Easy"){
-                        trailDifficulty += "🟢";
-                    }else if (trailDifficulty == "Intermediate"){
-                        trailDifficulty += "🔵";
-                    }else if (trailDifficulty == "Advanced"){
-                        trailDifficulty += "⚫";
-                    }else{
-                        trailDifficulty += "🌲";
-                    }
                     container = $('<div id="Review_item" class="container"></div>');
                     wrapper.append(container);
                     container.append('<div class="trail">' + trailName +'</div>');
