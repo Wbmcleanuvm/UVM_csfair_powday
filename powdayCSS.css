@@ -21,6 +21,7 @@ form{
     font-size: 20px;
     text-align: center;
     padding-bottom: 0px;
+    margin-bottom: 50px;
 }
 
 input[type=button]{
