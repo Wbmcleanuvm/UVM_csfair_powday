@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="#">
     <script src="Mountain.js"></script>
     <script src="Review.js"></script>
+    <script src="Weather.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -97,38 +98,22 @@
             <div class="snowForecast">
                 <p id="windSpeed">Wind Speed: </p>
                 <p id="snowDepth">Snow Depth: </p>
-                <p id="expectedSnow">Expected Snow: </p>
+                <p id="expectedSnow">Snow or Rain: </p>
             </div>
 
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
-                // Fetch forecast data from Tomorrow.io API
-                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
+                weatherRead().done(function(read) 
+                {
+                    weatherList = convertToWeather(read);
 
-                    console.log(weatherObj)
-
-                    const daily = weatherObj.timelines.daily[0];
-
-                    let snowDepth = daily.values.snowDepthAvg.toFixed(1);
-                    const sd = document.getElementById("snowDepth");
-                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
-                })
-                .catch(err => console.error('Error fetching forecast data:', err));
-
-                // Fetch real-time weather data from Tomorrow.io API
-                /*fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
-                    let time = new Date();
-                    console.log("Weather Data Fetched at: " + time);
-                    console.log(weatherObj)
-
-
-                    let liveVars = weatherObj.data.values;
-                    let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
+                    const jayWeather = weatherList[1];
+                    const temp = jayWeather.getTemp();
+                    const tempA = jayWeather.getFeelsLike();
+                    const windS = jayWeather.getWindSpeed();
+                    const conditions = jayWeather.getConditions();
+                    const weatherCode = jayWeather.getWeatherCode();
 
                     // Weather Icon Mapping
                     const iconMap = {
@@ -159,24 +144,35 @@
                         6001: "60010_freezing_rain_large@2x.png",     // Freezing Rain
                         6200: "62000_freezing_rain_light_large@2x.png"
                     };
-                    let weatherCode = liveVars.weatherCode;
+
                     let iconFileName = iconMap[weatherCode] || "unknown.png";
                     let icon = "Icons/" + iconFileName;
-                     
+                
                     let img = document.getElementById("weatherImg").getElementsByTagName("img")[0];
                     img.src = icon;
 
                     const t = document.getElementById("temp");
                     t.innerHTML = temp + "°F";
-                    let tempA = celsiusToFahrenheit(liveVars.temperatureApparent).toFixed(1);
+
                     const ta = document.getElementById("tempApparent");
                     ta.innerHTML = "Feels Like: " + tempA + " °F";
 
-                    let windS = liveVars.windSpeed.toFixed(1);
                     const wSpeed = document.getElementById("windSpeed");
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
-                })
-                .catch(err => console.error('Error fetching live weather data:', err));*/
+
+                    const sd = document.getElementById("snowDepth");
+                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+
+                    const sr = document.getElementById("expectedSnow");
+                    if (conditions == 1) 
+                    {
+                        sr.innerHTML = "Snow or Rain: It's Snow";
+                    } else if (conditions == 2)
+                    {
+                        sr.innerHTML = "Snow or Rain: It's Rain";
+                    } else {sr.innerHTML = "Snow or Rain: Nothing!"}
+                });
+
             </script>
             <div class="reviewSection">
                 <p id="leaveReview">Leave a Review </p>
