@@ -18,9 +18,9 @@ body {
 form{
     border-radius: 5px;
     padding: 20px;
-    display: inline-block;
     font-size: 20px;
     text-align: center;
+    padding-bottom: 0px;
 }
 
 input[type=button]{
@@ -38,15 +38,13 @@ input[type=button]{
 input[type=range] {
     width: 200px;
     margin: 10px 0px;
-    color: rgb(0, 0, 0);
-    box-sizing: border-box;
 }
 
 input[type=text] {
     border: 5px solid rgb(109, 119, 129); 
     box-shadow: 0 0 16px rgba(0,0,0,0.1); 
-    padding: 15px;
     background: rgb(122, 133, 143);
+    padding: 15px;
     margin: 0px 10px;
     
 }
@@ -68,6 +66,7 @@ input[type=submit] {
     text-align: center;
     color: black;
     margin-top: 10px;
+    margin-bottom: 0px;
 }
 
 .reviewSection
@@ -126,7 +125,6 @@ input[type=submit] {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     display: grid;
-    /* grid-template-columns: repeat(2, 1fr);  */
     gap: 20px;
     margin: 10px 10px;
     align-items: start;
