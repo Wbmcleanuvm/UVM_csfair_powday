@@ -1,18 +1,47 @@
 var script = document.createElement('script');
 script.src = 'https://code.jquery.com/jquery-3.6.3.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
+// KEY
+/*
+idx 1 = jay
+idx 2 = bolton
+idx 3 = smuggs
+idx 4 = bush
+*/
 class weatherData{
-    constructor(temp, feesLike, windSpeed){
+    constructor(temp, feelsLike, windSpeed,conditions, weatherCode){
         this.temp = temp;
         this.feelsLike = feelsLike;
         this.windSpeed = windSpeed;
-        
+        if (parseInt(conditions) == 1){
+            this.conditions = "Snowing";
+        }else if(parseInt(conditions) == 2){
+            this.conditions = "Raining";
+        }else{
+            this.conditions = "Clear Skies"
+        }
+        this.weatherCode = weatherCode;
+    }
+    getTemp(){
+        return this.temp
+    }
+    getFeelsLike(){
+        return this.feelsLike;
+    }
+    getWindSpeed(){
+        return this.windSpeed;
+    }
+    getConditions(){
+        return this.conditions;
+    }
+    getWeatherCode(){
+        return this.weatherCode;
     }
 }
 
 function convertToWeather(rawdata){
     let add = "";
-    let reviews = [];
+    let weather = [];
     let rConst = [];
     let count = 0;
     let i = 0;
@@ -28,8 +57,8 @@ function convertToWeather(rawdata){
         }
         else if (rawdata[i] == "]"){
             rConst.push(add);
-            newReview = new Review(rConst[0], rConst[1], rConst[2], rConst[3]);
-            reviews.push(newReview);
+            newWeather = new weatherData(rConst[0], rConst[1], rConst[2], rConst[3], rConst[4]);
+            weather.push(newWeather);
             count = 0;
             i++;
             rConst = [];
@@ -43,7 +72,7 @@ function convertToWeather(rawdata){
         i++;
 
     }
-   return reviews;
+   return weather;
 }
 
 

@@ -4,8 +4,10 @@
 <link rel="shortcut icon" href="#">
 <script src="Weather.js"></script>
 <script>
-    WriteWeather();
+    //WriteWeather();
     weatherRead().done(function(read) {
+        weatherList = convertToWeather(read);
+        console.log(weatherList[1]);
     });
 </script>
 
