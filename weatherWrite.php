@@ -10,7 +10,7 @@ if (isset($_POST['functionName'])) {
         clearCsvCache();
     }
     if ($_POST['functionName'] === 'readWeatherCsv'){
-
+        readWeatherCsv();
     }
 
 }
@@ -39,12 +39,12 @@ function WritetoCsv($data): void{
 function readWeatherCsv(){
     $data = [];
     if ($csv = fopen('storeWeather.csv', 'r')){
-        while (($row = fgetcsv($csv)) !== false) {
+        while (($row = fgetcsv($csv,0, ",", "\"", "")) !== false) {
             $data[] = $row;
         }
     }
-    return $data;
-    
+    fclose($csv);
+    echo json_encode($data);
 
 }
 

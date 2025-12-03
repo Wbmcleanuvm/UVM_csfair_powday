@@ -71,12 +71,6 @@ function convertToReviews(reviewData){
         i++;
 
     }
-    /* functionality test 
-    let s = 0;
-    while (s<reviews.length){
-        console.log(reviews[s]);
-        s++;
-    }*/
    return reviews;
 }
 

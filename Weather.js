@@ -1,6 +1,48 @@
 var script = document.createElement('script');
 script.src = 'https://code.jquery.com/jquery-3.6.3.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
+class weatherData{
+    constructor(temp, feesLike, windSpeed){
+        
+    }
+}
+
+function convertToWeather(rawdata){
+    let add = "";
+    let reviews = [];
+    let rConst = [];
+    let count = 0;
+    let i = 0;
+    while (i < rawdata.length){
+        if (rawdata[i] == ","){  
+            count++;
+            i++;
+            rConst.push(add);
+            add = "";
+        }
+        else if (rawdata[i] == "["){
+            i++;
+        }
+        else if (rawdata[i] == "]"){
+            rConst.push(add);
+            newReview = new Review(rConst[0], rConst[1], rConst[2], rConst[3]);
+            reviews.push(newReview);
+            count = 0;
+            i++;
+            rConst = [];
+            add = "";
+        }else{
+            if (rawdata[i] == '"'){
+            }else{
+                add += rawdata[i];
+            }
+        }
+        i++;
+
+    }
+   return reviews;
+}
+
 
 function celsiusToFahrenheit(celsius) {
     return (celsius * 9/5) + 32;
@@ -70,5 +112,17 @@ function WriteWeather(){
         })
         }
     })
+
 }
-                        
+
+function weatherRead() {
+    return $.ajax({
+        url: 'weatherWrite.php',
+        type: 'POST',
+        data: { functionName: 'readWeatherCsv' }
+    });
+}
+
+// Usage:
+
+        

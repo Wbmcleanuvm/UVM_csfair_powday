@@ -45,8 +45,7 @@ function readCsvToMatrix(string $filename, string $delimiter = ','): array {
     $matrix = [];
     if (($handle = fopen($filename, 'r')) !== false) {
         while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
-            $matrix[] = array_map('trim', $row);
-            
+            $matrix[] = array_map('trim', $row);   
         }
         fclose($handle);
     } else {
