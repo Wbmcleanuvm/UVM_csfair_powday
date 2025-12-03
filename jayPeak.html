@@ -213,7 +213,7 @@
                 <label for="Trail">Choose the trail</label>
                 <select name="Trail" id="Trail"></select>
                 <script>
-                    fetchTrails().then((trails) => {
+                    fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailNames = jay.getAllTrailNames();
                     const select = document.getElementById("Trail");
@@ -235,8 +235,7 @@
             <label for="Trail">Choose the trail</label>
             <select name="Trail" id="Trail"></select>
             <script>
-                let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv';
-                fetchTrails(trailsPath).then((trails) => {
+                fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
                 let jay = new Mountain("Jay Peak", trails);
                 let trailNames = jay.getAllTrailNames();
                 const select = document.getElementById("Trail");
@@ -262,7 +261,7 @@
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
                 <script>
-                    fetchTrails(trailsPath).then((trails) => {
+                    fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailLst = jay.getTrailList();
                     let s = 1;
@@ -297,7 +296,6 @@
             fetchReviews(reviewsPath).then((reviews) => {
                 let jayReviews = new MountainReviews("Jay Peak", reviews);
                 let reviewList = jayReviews.getListOfReviews();
-                
                 let s = 1;
                 var wrapper = $('#wrapper'), container;
                 while (s < reviewList.length){
