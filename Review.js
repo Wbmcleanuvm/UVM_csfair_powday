@@ -74,19 +74,16 @@ function convertToReviews(reviewData){
    return reviews;
 }
 
-function fetchReviews(actionpath){
-        
-            return fetch(actionpath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to read response");
-                }
-                return response.json();
-            })
-            .then(data => {
-                //const reviews = convertToReviews(data.message);
-                //console.log(data.message);
-                return reviews;
-            })
-            .catch(error => console.error('Error fetching review data:', error));
+async function fetchReviews(actionpath){
+            try {
+        const response = await fetch(actionpath);
+        if (!response.ok) {
+            throw new Error("Failed to read response");
+        }
+        const data = await response.json();
+        const reviews = convertToReviews(data.message);
+        return reviews;
+    } catch (error) {
+        return console.error('Error fetching review data:', error);
+    }
         }

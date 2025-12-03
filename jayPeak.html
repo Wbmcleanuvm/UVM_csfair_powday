@@ -195,6 +195,30 @@
                 <br></br>
                 <label for="Trail">Choose the trail</label>
                 <select name="Trail" id="Trail"></select>
+                <script>
+                    fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
+                    let jay = new Mountain("Jay Peak", trails);
+                    let trailNames = jay.getAllTrailNames();
+                    const select = document.getElementById("Trail");
+                    trailNames.forEach(trail => {
+                    const option = document.createElement("option");
+                    option.textContent = trail; 
+                    select.appendChild(option);
+                });
+
+                
+                
+                });
+                </script>
+            <label for="Mnt">Choose a mountain:</label>
+            <select name="mnt" id="Mnt">
+            <option value=JayPeak > Jay Peak</option>
+            </select>
+            <br></br>
+            <label for="Trail">Choose the trail</label>
+            <select name="Trail" id="Trail"></select>
+            <script>
+                fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
             <script>
             let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv'
             fetchTrails(trailsPath).then((trails) => {
@@ -217,7 +241,7 @@
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
                 <script>
-                fetchTrails(trailsPath).then((trails) => 
+                fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => 
                 {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailLst = jay.getTrailList();
@@ -253,7 +277,6 @@
             fetchReviews(reviewsPath).then((reviews) => {
                 let jayReviews = new MountainReviews("Jay Peak", reviews);
                 let reviewList = jayReviews.getListOfReviews();
-                
                 let s = 1;
                 var wrapper = $('#wrapper'), container;
                 while (s < reviewList.length){
