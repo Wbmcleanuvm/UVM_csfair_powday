@@ -31,9 +31,17 @@ function getWeather(MountCords){
             const wSpeed = document.getElementById("windSpeed");
             wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
             listOfData.push(wSpeed);
+
+            let snowIntensity = liveVars.snowIntensity.toFixed(1);
+            let rainIntensity = liveVars.rainIntensity.toFixed(1);
+            const expSnow = document.getElementById("expectedSnow");
+            let isRaining, isSnowing = false;
+            if (snowIntensity > rainIntensity) {
+                isSnowing;
+            }  else {isRaining}         
             
             return listOfData;
-            } catch (TypeError){
+            } catch (error){
                 return 1;
             }
         })
@@ -98,13 +106,4 @@ function WriteWeather(){
     }else{
         console.log("Weather Write Aborted due to error flag.");
     }
-
-
-
-    
-
-///////////////////////////////////////////////
-
-    
-
 }

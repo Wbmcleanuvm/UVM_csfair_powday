@@ -19,6 +19,8 @@ form{
     border-radius: 5px;
     padding: 20px;
     display: inline-block;
+    font-size: 20px;
+    text-align: center;
 }
 
 input[type=button]{
@@ -35,16 +37,18 @@ input[type=button]{
 
 input[type=range] {
     width: 200px;
-    margin: 10px;
-    color: yellow;
+    margin: 10px 0px;
+    color: rgb(0, 0, 0);
     box-sizing: border-box;
 }
 
 input[type=text] {
-    width: auto;
-    padding: 12px;
-    margin: 10px;
-    box-sizing: border-box;
+    border: 5px solid rgb(109, 119, 129); 
+    box-shadow: 0 0 16px rgba(0,0,0,0.1); 
+    padding: 15px;
+    background: rgb(122, 133, 143);
+    margin: 0px 10px;
+    
 }
 
 input[type=submit] {
@@ -57,6 +61,21 @@ input[type=submit] {
     cursor: pointer;
     font-size: 16px;
     border-radius: 12px;
+}
+
+#leaveReview{
+    font-size: 36px;
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+}
+
+.reviewSection
+{
+    grid-row: span 2;
+    grid-column: span 2;
+    background-color: rgb(109, 119, 129);
+    padding: 5px 0px;
 }
 
 #map
@@ -92,12 +111,6 @@ input[type=submit] {
     grid-column: span 2;
 }
 
-.review 
-{
-    grid-row: 3;
-    grid-column: 3;
-}
-
 @property --rotation {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -119,14 +132,20 @@ input[type=submit] {
     align-items: start;
 }
 
+
 h1 {
-    position: fixed;
+    position: absolute;
+    display: flex;
+    z-index: 2;
     font-family: Coluna;
     text-align: center;
-    font-size: clamp(1rem, 5vw, 2rem);
-    margin: 0px 0px;
+    font-size: 4rem;
+    margin: 40px 15px;
     color: white;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7);
+    /* text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.7); */
+    background: linear-gradient(to left, #ffffff, rgb(172, 245, 249));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .navbackground 
@@ -220,14 +239,41 @@ h1 {
 
 #temp 
 {
-    font-size: 30px;
-    text-align: center;
+    display: inline-block;
+    font-size: 120px;
     margin: 0px;
+
 }
 
 #tempApparent 
 {
+    display: inline-block;
+    font-size: 20px;
+    text-align: left;
+    /* margin: -10px 5px; */
+}
+
+#weatherImg {
+    display: inline-block;
+    vertical-align: top;
+    width: 150px;
+    height: 150px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.snowForecast {
     font-size: 20px;
     text-align: center;
-    margin: 0px;
+    padding: 5px 0px;
+    background-color: rgb(109, 119, 129);
+    border-bottom: 2px solid rgb(84, 91, 99);
+}
+
+.curWeather 
+{
+    align-items: center;
+    text-align: center;
+    background-color: rgb(109, 119, 129);
+    border-bottom: 2px solid rgb(84, 91, 99);
 }

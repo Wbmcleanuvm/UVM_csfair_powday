@@ -77,19 +77,19 @@
     </style>
 </head>
 <body>
- 
-    <div class="navbackground">
-        <h1>
-            JAY PEAK 
-        </h1>
-        <div class="navbar">
-            <a href="index.html">Home</a>
-            <a href="jayPeak.html">Jay Peak</a>
-            <a href="boltonValley.html">Bolton Valley</a>
-            <a href="sugarBush.html">SugarBush</a>
-            <a href="smugglersNotch.html">SmugglersNotch</a>
-            <a href="reviewForm.html">Review</a>
-        </div>
+       
+
+        <div class="navbackground">
+          <h1>UVM POW DAY • Jay Peak</h1>
+
+          <div class="navbar">
+             <a href="index.html">Home</a>
+             <a href="jayPeak.html">Jay Peak</a>
+             <a href="boltonValley.html">Bolton Valley</a>
+             <a href="sugarBush.html">SugarBush</a>
+             <a href="smugglersNotch.html">SmugglersNotch</a>
+             <a href="reviewForm.html">Review</a>
+          </div>
         </div>
 
 
@@ -127,82 +127,86 @@
         </div>
 
         <div class="weather">
-            <p id="temp">Current Temperature </p>
-            <p id="tempApparent">Feels Like: </p>
-            <p id="windSpeed">Wind Speed: </p>
-            <p id="snowDepth">Snow Depth: </p>
-            <p id="expectedSnow">Expected Snow: </p>
+            <div class="curWeather">
+                <div id="weatherImg">
+                    <img src="Icons/10010_cloudy_large@2x.png" alt="Weather Icon"/>
+                </div>
+                <p id="temp">20°F</p>
+                <p id="tempApparent">Feels Like: 12°F</p>
+            </div>  
+            <div class="snowForecast">
+                <p id="windSpeed">Wind Speed: </p>
+                <p id="snowDepth">Snow Depth: </p>
+                <p id="expectedSnow">Expected Snow: </p>
+            </div>
 
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
                 // Fetch forecast data from Tomorrow.io API
-                // fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                // .then(res => res.json())
-                // .then(weatherObj => {
+                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
+                .then(res => res.json())
+                .then(weatherObj => {
 
-                //     console.log(weatherObj)
+                    console.log(weatherObj)
 
-                //     const daily = weatherObj.timelines.daily[0];
+                    const daily = weatherObj.timelines.daily[0];
 
-                //     let snowDepth = daily.values.snowDepth.toFixed(1);
-                //     const sd = document.getElementById("snowDepth");
-                //     sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
-
-                //     let expectedSnow = daily.values.snowAccumulationAvg.toFixed(1);
-                //     const es = document.getElementById("expectedSnow");
-                //     es.innerHTML = "Expected Snow: " + expectedSnow + " inches";
-                // })
-                // .catch(err => console.error('Error fetching forecast data:', err));
+                    let snowDepth = daily.values.snowDepthAvg.toFixed(1);
+                    const sd = document.getElementById("snowDepth");
+                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+                })
+                .catch(err => console.error('Error fetching forecast data:', err));
 
                 // Fetch real-time weather data from Tomorrow.io API
                 fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
                 .then(res => res.json())
                 .then(weatherObj => {
                     let time = new Date();
-                    //console.log("Weather Data Fetched at: " + time);
-                    //console.log(weatherObj)
+                    console.log("Weather Data Fetched at: " + time);
+                    console.log(weatherObj)
 
                     let liveVars = weatherObj.data.values;
                     let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
 
-                    // // Weather Icon Mapping
-                    // const iconMap = {
-                    //     1000: "10000_clear_small@2x.png",
-                    //     1001: "10001_cloudy_small@2x.png",
+                    // Weather Icon Mapping
+                    const iconMap = {
+                        1000: "10000_clear_large@2x.png",
+                        1001: "10010_cloudy_large@2x.png",
 
-                    //     1100: "11000_mostly_clear_small@2x.png",
-                    //     1101: "11001_partly_cloudy_small@2x.png",
-                    //     1102: "11002_mostly_cloudy_small@2x.png",
+                        1100: "11000_mostly_clear_large@2x.png",
+                        1101: "11001_mostly_clear_large@2x.png",
+                        1102: "11020_mostly_cloudy_large@2x.png",
 
-                    //     // Fog / Haze
-                    //     2000: "20000_fog_small@2x.png",
-                    //     2100: "21000_haze_small@2x.png",
+                        // Fog
+                        2000: "20000_fog_large@2x.png",
+                        2100: "21000_fog_light_large@2x.png",
+                        // Rain
+                        4000: "40000_drizzle_large@2x.png",
+                        4001: "40010_rain_large@2x.png",
+                        4200: "42000_rain_light_large@2x.png",
+                        4201: "42010_rain_heavy_large@2x.png",
 
-                    //     // Rain
-                    //     4000: "40000_drizzle_small@2x.png",
-                    //     4001: "40001_rain_small@2x.png",
-                    //     4200: "42000_rain_light_small@2x.png",
-                    //     4201: "42001_rain_heavy_small@2x.png",
+                        // Snow
+                        5000: "50000_snow_large@2x.png",
+                        5001: "50010_flurries_large@2x.png",
+                        5100: "51000_snow_light_large@2x.png",
+                        5101: "51010_snow_heavy_large@2x.png",
 
-                    //     // Snow
-                    //     5000: "50000_snow_small@2x.png",
-                    //     5001: "50001_flurries_small@2x.png",
-                    //     5100: "51000_snow_light_small@2x.png",
-                    //     5101: "51001_snow_heavy_small@2x.png",
-
-                    //     // Freezing rain / ice
-                    //     6000: "60000_freezing_rain_small@2x.png",           // Freezing Drizzle
-                    //     6001: "60001_freezing_rain_light_small@2x.png",     // Freezing Rain
-                    //     6200: "62000_freezing_rain_heavy_small@2x.png"
-                    // };
-                    // let weatherCode = liveVars.weatherCode;
-                    // let iconFileName = iconMap[weatherCode] || "unknown.png";
-                    // let icon = "Icons/" + iconFileName;
+                        // Freezing rain / ice
+                        6000: "60000_freezing_rain_drizzle_large.png",           // Freezing Drizzle
+                        6001: "60010_freezing_rain_large@2x.png",     // Freezing Rain
+                        6200: "62000_freezing_rain_light_large@2x.png"
+                    };
+                    let weatherCode = liveVars.weatherCode;
+                    let iconFileName = iconMap[weatherCode] || "unknown.png";
+                    let icon = "Icons/" + iconFileName;
                      
+                    let img = document.getElementById("weatherImg").getElementsByTagName("img")[0];
+                    img.src = icon;
 
                     const t = document.getElementById("temp");
-                    t.innerHTML = "Current Temperature: " + temp + " °F";
+                    t.innerHTML = temp + "°F";
                     let tempA = celsiusToFahrenheit(liveVars.temperatureApparent).toFixed(1);
                     const ta = document.getElementById("tempApparent");
                     ta.innerHTML = "Feels Like: " + tempA + " °F";
@@ -210,70 +214,67 @@
                     let windS = liveVars.windSpeed.toFixed(1);
                     const wSpeed = document.getElementById("windSpeed");
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
+
                 })
                 .catch(err => console.error('Error fetching live weather data:', err));
             </script>
-        </div>
+            <div class="reviewSection">
+                <p id="leaveReview">Leave a Review </p>
+                <form method="POST" action="append.php">
 
-        <div class="reviewSection">
-            <p>Leave a Review </p>
-               <form method="POST" action="append.php">
+                Name:<input 
+                type="text" 
+                name="fname" 
+                required 
+                minlength="2" 
+                maxlength="10" 
+                pattern="[A-Za-z]+" 
+                placeholder="Enter username"
+                >
 
-            Name:<input 
-            type="text" 
-            name="fname" 
-            required 
-            minlength="2" 
-            maxlength="10" 
-            pattern="[A-Za-z]+" 
-            placeholder="Enter username"
-            >
+                <br> </br>
+                Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
+                <p>Rating: <output id="value"></output></p>
 
-            <br> </br>
-            Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
-            <p>Rating: <output id="value"></output></p>
+                <script>
+                    const value = document.querySelector("#value");
+                    const input = document.querySelector("#input");
+                    value.textContent = input.value;
+                    input.addEventListener("input", (event) => {
+                    value.textContent = event.target.value;
+                    });
+                </script>
 
-            <script>
-                const value = document.querySelector("#value");
-                const input = document.querySelector("#input");
-                value.textContent = input.value;
-                input.addEventListener("input", (event) => {
-                value.textContent = event.target.value;
+                <label for="Mnt">Choose a mountain:</label>
+                <select name="mnt" id="Mnt">
+                <option value=JayPeak > Jay Peak</option>
+                </select>
+                <br></br>
+                <label for="Trail">Choose the trail</label>
+                <select name="Trail" id="Trail"></select>
+                <script>
+                    fetchTrails().then((trails) => {
+                    let jay = new Mountain("Jay Peak", trails);
+                    let trailNames = jay.getAllTrailNames();
+                    const select = document.getElementById("Trail");
+                    trailNames.forEach(trail => {
+                    const option = document.createElement("option");
+                    option.textContent = trail; 
+                    select.appendChild(option);
                 });
-            </script>
 
-            <label for="Mnt">Choose a mountain:</label>
-            <select name="mnt" id="Mnt">
-            <option value=JayPeak > Jay Peak</option>
-            </select>
-            <br></br>
-            <label for="Trail">Choose the trail</label>
-            <select name="Trail" id="Trail"></select>
-            <script>
-                fetchTrails().then((trails) => {
-                let jay = new Mountain("Jay Peak", trails);
-                let trailNames = jay.getAllTrailNames();
-                const select = document.getElementById("Trail");
-                trailNames.forEach(trail => {
-                const option = document.createElement("option");
-                option.textContent = trail; 
-                select.appendChild(option);
-            });
-
-            
-            
-            });
-            </script>
+                
+                
+                });
+                </script>
 
 
 
-            <input type="button" value="Submit" onclick="this.form.submit()">
-            </form>
+                <input type="button" value="Submit" onclick="this.form.submit()">
+                </form>
 
+            </div>
         </div>
-
-    </div>
-
     <div class ="Reviews">
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
@@ -286,12 +287,7 @@
                     while (s < trailLst.length){
                         let trail = trailLst[s];
                         let trailName = trail.getName();
-                        let trailStatus = trail.getStatus();
-                        if (trailStatus == "true"){
-                            trailStatus = "✅"
-                        }else{
-                            trailStatus = "❌"
-                        }
+
                         let trailDifficulty = trail.getDifficulty();
                         if (trailDifficulty == "Begginer"){
                             trailDifficulty += "🟢";
@@ -305,7 +301,6 @@
                         container = $('<div id="Review_item" class="container"></div>');
                         wrapper.append(container);
                         container.append('<div class="item">' + trailName +'</div>');
-                        container.append('<div class="userName">' + trailStatus +'</div>');
                         container.append('<div class="rating">'  + trailDifficulty +'</div>');
                         s++;
                     }
