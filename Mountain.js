@@ -20,7 +20,6 @@ class Mountain
     getTrailList(){
         return this.trails;
     }
-
     addTrail(trail){
         this.trails.push(t);
     }
@@ -33,8 +32,20 @@ class Mountain
         return t.getStatus();
     }
     getTrailDifficulty(inx){
-        let t = this.trails[inx];
-        return t.getDifficulty
+       let t = this.trails[inx];
+    const difficulty = t.getDifficulty();
+
+    const emojiMap = {
+        "Beginner": "🟢",
+        "Intermediate": "🔵",
+        "Advanced": "⚫"
+    };
+
+    const emoji = emojiMap[difficulty] || "🌲";
+
+    t.setDifficulty(difficulty + emoji);
+    return t.getDifficulty();
+
     }
     getNumberOfTrails() 
     {
@@ -100,20 +111,10 @@ function convertToTrails(trailData){
             }else{
                 add += trailData[i];
             }
-            
-            //console.log(add);
         }
         i++;
 
     }
-    /*
-    prints trails to console
-    let s = 0;
-    while (s<trails.length){
-        console.log(trails[s]);
-        s++;
-    } */
-   //objerct initization still doesnt work
    return trails;
 }
 class trail
@@ -125,6 +126,15 @@ class trail
         this.#name = name;
         this.#difficulty = difficulty;
         this.#status = status;
+        this.rating = 0;
+        this.numRatings;
+    }
+    addRating(rating){
+        this.numRatings += 1;
+        newRating = (getRating() + rating) / this.numRatings;
+    }
+    getRating(){
+        return this.getRating();
     }
     getName(){
         return this.#name;
@@ -134,5 +144,8 @@ class trail
     }
     getStatus(){
         return this.#status;
+    }
+    setDifficulty(difficulty){
+        this.difficulty = difficulty;
     }
 }

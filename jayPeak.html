@@ -10,7 +10,6 @@
     <script src="Weather.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
     <link rel="stylesheet" href="powdayCSS.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -21,10 +20,8 @@
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-
-    <style> 
-
-        /* h1 
+    <style>
+        /* h1
         {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: left;
@@ -32,27 +29,23 @@
             background: linear-gradient(to right, #ffffff, rgb(0, 0, 0));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        } 
+        }
         */
-
     </style>
 </head>
 <body>
-       
+    <div class="navbackground">
+        <h1>UVM POW DAY • Jay Peak</h1>
 
-        <div class="navbackground">
-          <h1>UVM POW DAY • Jay Peak</h1>
-
-          <div class="navbar">
-             <a href="index.html">Home</a>
-             <a href="jayPeak.html">Jay Peak</a>
-             <a href="boltonValley.html">Bolton Valley</a>
-             <a href="sugarBush.html">SugarBush</a>
-             <a href="smugglersNotch.html">SmugglersNotch</a>
-             <a href="reviewForm.html">Review</a>
-          </div>
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="jayPeak.html">Jay Peak</a>
+            <a href="boltonValley.html">Bolton Valley</a>
+            <a href="sugarBush.html">SugarBush</a>
+            <a href="smugglersNotch.html">SmugglersNotch</a>
+            <a href="reviewForm.html">Review</a>
         </div>
-
+    </div>
 
     <div class="mainGrid">
         <div class="mapHighlight">
@@ -65,12 +58,12 @@
                         crs: L.CRS.Simple,
                         minZoom: -.5,
                         maxZoom: 4
-                    }); 
-                    const bounds = [[0, 0], [heightPix, widthPix]]; // [[0, 0], [height, width]]
+                    });
+                    const bounds = [[0, 0], [heightPix, widthPix]];
 
                     const mOverlay = L.imageOverlay('TrailMaps/Screenshot 2025-11-25 211953.png', bounds, {
                         attribution: '&copy; <a href="https://jaypeakresort.com/">JayPeakResort</a>'
-                    }).addTo(map);;   
+                    }).addTo(map);
 
                     map.fitBounds(bounds);
                     map.setMaxBounds(bounds);
@@ -94,7 +87,7 @@
                 </div>
                 <p id="temp">20°F</p>
                 <p id="tempApparent">Feels Like: 12°F</p>
-            </div>  
+            </div>
             <div class="snowForecast">
                 <p id="windSpeed">Wind Speed: </p>
                 <p id="expectedSnow">Snow or Rain: </p>
@@ -103,50 +96,40 @@
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
-                weatherRead().done(function(read) 
-                {
+                weatherRead().done(function(read) {
                     weatherList = convertToWeather(read);
-
                     const jayWeather = weatherList[1];
                     const temp = jayWeather.getTemp();
                     const tempA = jayWeather.getFeelsLike();
                     const windS = jayWeather.getWindSpeed();
                     const conditions = jayWeather.getConditions();
+                    console.log(conditions);
                     const weatherCode = jayWeather.getWeatherCode();
 
-                    // Weather Icon Mapping
                     const iconMap = {
                         1000: "10000_clear_large@2x.png",
                         1001: "10010_cloudy_large@2x.png",
-
                         1100: "11000_mostly_clear_large@2x.png",
                         1101: "11001_mostly_clear_large@2x.png",
                         1102: "11020_mostly_cloudy_large@2x.png",
-
-                        // Fog
                         2000: "20000_fog_large@2x.png",
                         2100: "21000_fog_light_large@2x.png",
-                        // Rain
                         4000: "40000_drizzle_large@2x.png",
                         4001: "40010_rain_large@2x.png",
                         4200: "42000_rain_light_large@2x.png",
                         4201: "42010_rain_heavy_large@2x.png",
-
-                        // Snow
                         5000: "50000_snow_large@2x.png",
                         5001: "50010_flurries_large@2x.png",
                         5100: "51000_snow_light_large@2x.png",
                         5101: "51010_snow_heavy_large@2x.png",
-
-                        // Freezing rain / ice
-                        6000: "60000_freezing_rain_drizzle_large.png",           // Freezing Drizzle
-                        6001: "60010_freezing_rain_large@2x.png",     // Freezing Rain
+                        6000: "60000_freezing_rain_drizzle_large.png",
+                        6001: "60010_freezing_rain_large@2x.png",
                         6200: "62000_freezing_rain_light_large@2x.png"
                     };
 
                     let iconFileName = iconMap[weatherCode] || "unknown.png";
                     let icon = "Icons/" + iconFileName;
-                
+
                     let img = document.getElementById("weatherImg").getElementsByTagName("img")[0];
                     img.src = icon;
 
@@ -160,120 +143,84 @@
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
 
                     const sr = document.getElementById("expectedSnow");
-                    if (conditions == 1) 
-                    {
-                        sr.innerHTML = "Snow or Rain: It's Snow";
-                    } else if (conditions == 2)
-                    {
-                        sr.innerHTML = "Snow or Rain: It's Rain";
-                    } else {sr.innerHTML = "Snow or Rain: Nothing!"}
+                    sr.innerHTML = "Snow or Rain: " + conditions;
                 });
-
             </script>
+
             <div class="reviewSection">
                 <p id="leaveReview">Leave a Review </p>
                 <form method="POST" action="append.php">
+                    Name: <input type="text" name="fname" required minlength="2" maxlength="10" pattern="[A-Za-z]+" placeholder="Enter username">
+                    <br></br>
+                    <p>Score: <input id="input" name="score" type="range" min="0.0" max="5.0" step="0.1" value="1"> Rating: <output id="value"></output></p>
 
-                Name:<input type="text" name="fname" required minlength="2" maxlength="10" pattern="[A-Za-z]+" placeholder="Enter username">
+                    <script>
+                        const value = document.querySelector("#value");
+                        const input = document.querySelector("#input");
+                        value.textContent = input.value;
+                        input.addEventListener("input", (event) => {
+                            value.textContent = event.target.value;
+                        });
+                    </script>
 
-                <br> </br>
-                <p>Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale"> Rating: <output id="value"></output></p>
+                    <input type="hidden" name="mnt" value="JayPeak">
+                    <label for="Trail">Choose the trail</label>
+                    <select name="Trail" id="Trail"></select>
 
+                    <script>
+                        let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv'
+                        fetchTrails(trailsPath).then((trails) => {
+                            let jay = new Mountain("Jay Peak", trails);
+                            let trailNames = jay.getAllTrailNames();
+                            const select = document.getElementById("Trail");
+                            trailNames.forEach(trail => {
+                                const option = document.createElement("option");
+                                option.textContent = trail;
+                                select.appendChild(option);
+                            });
+                        });
+                    </script>
+
+                    <input type="button" value="Submit" onclick="this.form.submit()">
+                </form>
+            </div>
+        </div>
+
+        <div class="Reviews">
+            <div class="trailStatus">
+                <p id="trails">Trail Status</p>
+            </div>
+
+            <div id="wrapper">
                 <script>
-                    const value = document.querySelector("#value");
-                    const input = document.querySelector("#input");
-                    value.textContent = input.value;
-                    input.addEventListener("input", (event) => {
-                    value.textContent = event.target.value;
+                    let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+                    fetchTrails(trailsPath).then((trails) => {
+                        fetchReviews(reviewsPath).then((reviews) => {
+                            let jayReviews = new MountainReviews("Jay Peak", reviews);
+                            let reviewList = jayReviews.getListOfReviews();
+                            let Jay = new Mountain("Jay Peak", trails);
+                            let trailLst = Jay.getTrailList();
+                            let s = 1;
+                            var wrapper = $('#wrapper'), container;
+                            while (s < reviewList.length) {
+                                let review = reviewList[s];
+                                let reviewsTrail = review.getTrailName(s);
+                                let reviewName = review.getReviewerName(s);
+                                let reviewScore = review.getRating(s);
+
+                                container = $('<div id="Review_item" class="container"></div>');
+                                wrapper.append(container);
+                                container.append('<div class="item">' + reviewsTrail + '</div>');
+                                container.append('<div class="userName">' + reviewName + '</div>');
+                                container.append('<div class="rating">' + reviewScore + '</div>');
+
+                                s++;
+                            }
+                        });
                     });
                 </script>
-
-                <label for="Mnt">Choose a mountain:</label>
-                <select name="mnt" id="Mnt">
-                <option value=JayPeak > Jay Peak</option>
-                </select>
-                <br></br>
-                <label for="Trail">Choose the trail</label>
-                <select name="Trail" id="Trail"></select>
-            <script>
-            let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv'
-            fetchTrails(trailsPath).then((trails) => {
-                let jay = new Mountain("Jay Peak", trails);
-                let trailNames = jay.getAllTrailNames();
-                const select = document.getElementById("Trail");
-                trailNames.forEach(trail => {
-                    const option = document.createElement("option");
-                    option.textContent = trail; 
-                    select.appendChild(option);
-                });       
-            });    
-            </script>
-                <input type="button" value="Submit" onclick="this.form.submit()">
-                </form>
-
             </div>
         </div>
-    <div class ="Reviews">
-        <div class="trailStatus">
-                <p id="trails">Trail Status<p>
-                <script>
-                fetchTrails(trailsPath).then((trails) => 
-                {
-                    let jay = new Mountain("Jay Peak", trails);
-                    let trailLst = jay.getTrailList();
-                    let s = 1;
-                    var wrapper = $('#wrapper'), container;
-                    while (s < trailLst.length){
-                        let trail = trailLst[s];
-                        let trailName = trail.getName();
-
-                        let trailDifficulty = trail.getDifficulty();
-                        if (trailDifficulty == "Begginer"){
-                            trailDifficulty += "🟢";
-                        }else if (trailDifficulty == "Intermediate"){
-                            trailDifficulty += "🔵";
-                        }else if (trailDifficulty == "Advanced"){
-                            trailDifficulty += "⚫";
-                        }else{
-                            trailDifficulty += "🌲";
-                        }
-                        container = $('<div id="Review_item" class="container"></div>');
-                        wrapper.append(container);
-                        container.append('<div class="item">' + trailName +'</div>');
-                        container.append('<div class="rating">'  + trailDifficulty +'</div>');
-                        s++;
-                    }
-
-                });
-                </script>
-            </div>
-            <div id ="wrapper">
-            <script>
-            let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
-            fetchReviews(reviewsPath).then((reviews) => {
-                let jayReviews = new MountainReviews("Jay Peak", reviews);
-                let reviewList = jayReviews.getListOfReviews();
-                
-                let s = 1;
-                var wrapper = $('#wrapper'), container;
-                while (s < reviewList.length){
-                    let review = reviewList[s];
-                    let reviewsTrail = review.getTrailName(s);
-                    let reviewName = review.getReviewerName(s);
-                    let reviewScore = review.getRating(s);
-
-                    container = $('<div id="Review_item" class="container"></div>');
-                    wrapper.append(container);
-                    container.append('<div class="item">' + reviewsTrail +'</div>');
-                    container.append('<div class="userName">' + reviewName +'</div>');
-                    container.append('<div class="rating">'  + reviewScore +'</div>');
-
-                    s++;
-                }
-
-            });
-            </script>   
-            <div>
-        </div>
+    </div>
 </body>
 </html>

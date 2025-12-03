@@ -1,5 +1,4 @@
 <?php
-
 $name = $_POST['fname'];
 $rating = $_POST['score'];
 $mnt = $filename = $_POST['mnt'];
@@ -13,7 +12,6 @@ if($csv = fopen("{$filename}review.csv", "a")){
     fputcsv($csv, $row, escape: "");
     // Close the CSV file
     fclose($csv);
-
     header("Location: index.html");
     exit();
 }else{

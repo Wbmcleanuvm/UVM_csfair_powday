@@ -18,7 +18,7 @@ class weatherData{
         }else if(parseInt(conditions) == 2){
             this.conditions = "Raining";
         }else{
-            this.conditions = "Clear Skies"
+            this.conditions = "Neither!"
         }
         this.weatherCode = weatherCode;
     }
