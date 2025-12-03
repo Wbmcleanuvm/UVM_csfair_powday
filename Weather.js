@@ -105,14 +105,11 @@ function getWeather(MountCords){
 
             let snowIntensity = liveVars.snowIntensity.toFixed(2);
             let rainIntensity = liveVars.rainIntensity.toFixed(2);
-            let isRaining, isSnowing = 0;
             if (snowIntensity > rainIntensity) {
-                isSnowing = 1;
-                listOfData.push(isSnowing);
+                listOfData.push(1);
             }else if (snowIntensity < rainIntensity)
             {
-                isRaining = 2
-                listOfData.push(isRaining);
+                listOfData.push(2);
             }else{
                 listOfData.push(3)
             }

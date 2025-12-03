@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="#">
     <script src="Mountain.js"></script>
     <script src="Review.js"></script>
+    <script src="Weather.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
@@ -97,38 +98,22 @@
             <div class="snowForecast">
                 <p id="windSpeed">Wind Speed: </p>
                 <p id="snowDepth">Snow Depth: </p>
-                <p id="expectedSnow">Expected Snow: </p>
+                <p id="expectedSnow">Snow or Rain: </p>
             </div>
 
             <script>
                 celsiusToFahrenheit = (celsius) => (celsius * 9/5) + 32;
 
-                // Fetch forecast data from Tomorrow.io API
-                fetch('https://api.tomorrow.io/v4/weather/forecast?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
+                weatherRead().done(function(read) 
+                {
+                    weatherList = convertToWeather(read);
 
-                    console.log(weatherObj)
-
-                    const daily = weatherObj.timelines.daily[0];
-
-                    let snowDepth = daily.values.snowDepthAvg.toFixed(1);
-                    const sd = document.getElementById("snowDepth");
-                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
-                })
-                .catch(err => console.error('Error fetching forecast data:', err));
-
-                // Fetch real-time weather data from Tomorrow.io API
-                /*fetch('https://api.tomorrow.io/v4/weather/realtime?location=44.925194956077874, -72.52570284955516&apikey=MAsbiYGVjd9s3cd8yQglLxtzLP0iXJWD')
-                .then(res => res.json())
-                .then(weatherObj => {
-                    let time = new Date();
-                    console.log("Weather Data Fetched at: " + time);
-                    console.log(weatherObj)
-
-
-                    let liveVars = weatherObj.data.values;
-                    let temp = celsiusToFahrenheit(liveVars.temperature).toFixed(1);
+                    const jayWeather = weatherList[1];
+                    const temp = jayWeather.getTemp();
+                    const tempA = jayWeather.getFeelsLike();
+                    const windS = jayWeather.getWindSpeed();
+                    const conditions = jayWeather.getConditions();
+                    const weatherCode = jayWeather.getWeatherCode();
 
                     // Weather Icon Mapping
                     const iconMap = {
@@ -159,42 +144,44 @@
                         6001: "60010_freezing_rain_large@2x.png",     // Freezing Rain
                         6200: "62000_freezing_rain_light_large@2x.png"
                     };
-                    let weatherCode = liveVars.weatherCode;
+
                     let iconFileName = iconMap[weatherCode] || "unknown.png";
                     let icon = "Icons/" + iconFileName;
-                     
+                
                     let img = document.getElementById("weatherImg").getElementsByTagName("img")[0];
                     img.src = icon;
 
                     const t = document.getElementById("temp");
                     t.innerHTML = temp + "°F";
-                    let tempA = celsiusToFahrenheit(liveVars.temperatureApparent).toFixed(1);
+
                     const ta = document.getElementById("tempApparent");
                     ta.innerHTML = "Feels Like: " + tempA + " °F";
 
-                    let windS = liveVars.windSpeed.toFixed(1);
                     const wSpeed = document.getElementById("windSpeed");
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
-                })
-                .catch(err => console.error('Error fetching live weather data:', err));*/
+
+                    const sd = document.getElementById("snowDepth");
+                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
+
+                    const sr = document.getElementById("expectedSnow");
+                    if (conditions == 1) 
+                    {
+                        sr.innerHTML = "Snow or Rain: It's Snow";
+                    } else if (conditions == 2)
+                    {
+                        sr.innerHTML = "Snow or Rain: It's Rain";
+                    } else {sr.innerHTML = "Snow or Rain: Nothing!"}
+                });
+
             </script>
             <div class="reviewSection">
                 <p id="leaveReview">Leave a Review </p>
                 <form method="POST" action="append.php">
 
-                Name:<input 
-                type="text" 
-                name="fname" 
-                required 
-                minlength="2" 
-                maxlength="10" 
-                pattern="[A-Za-z]+" 
-                placeholder="Enter username"
-                >
+                Name:<input type="text" name="fname" required minlength="2" maxlength="10" pattern="[A-Za-z]+" placeholder="Enter username">
 
                 <br> </br>
-                Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale">
-                <p>Rating: <output id="value"></output></p>
+                <p>Score: <input id= "input" name = "score" type="range" min="0.0" max="5.0" step="0.1" value="1" id="scale"> Rating: <output id="value"></output></p>
 
                 <script>
                     const value = document.querySelector("#value");
@@ -236,22 +223,19 @@
             <select name="Trail" id="Trail"></select>
             <script>
                 fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
+            <script>
+            let trailsPath = 'ReadCsvData.php?action=trail&filename=jayPeakTrails.csv'
+            fetchTrails(trailsPath).then((trails) => {
                 let jay = new Mountain("Jay Peak", trails);
                 let trailNames = jay.getAllTrailNames();
                 const select = document.getElementById("Trail");
                 trailNames.forEach(trail => {
-                const option = document.createElement("option");
-                option.textContent = trail; 
-                select.appendChild(option);
-            });
-
-            
-            
-            });
+                    const option = document.createElement("option");
+                    option.textContent = trail; 
+                    select.appendChild(option);
+                });       
+            });    
             </script>
-
-
-
                 <input type="button" value="Submit" onclick="this.form.submit()">
                 </form>
 
@@ -261,7 +245,8 @@
         <div class="trailStatus">
                 <p id="trails">Trail Status<p>
                 <script>
-                    fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => {
+                fetchTrails('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv').then((trails) => 
+                {
                     let jay = new Mountain("Jay Peak", trails);
                     let trailLst = jay.getTrailList();
                     let s = 1;
@@ -287,7 +272,7 @@
                         s++;
                     }
 
-                    })
+                });
                 </script>
             </div>
             <div id ="wrapper">
@@ -313,38 +298,9 @@
                     s++;
                 }
 
-            })
+            });
             </script>   
             <div>
         </div>
-
-    <script>
-        // fetch('ReadCsvData.php?action=trail&filename=jayPeakTrails.csv')
-        // .then(response => {
-        //     if (!response.ok) {
-        //         throw new Error("Failed to read response");
-        //     }
-        //     return response.json();
-        // })
-        // .then(data => {
-        //     //Smuggs is the Mountain object created in mountain.js, used to call its methods
-        //     convertToTrails( "Jay Peak", data.message);
-        //     let JayPeak = mountList.find(mtn => mtn.mountName === "Jay Peak");
-        //     console.log("Total Trails: " + JayPeak.getNumberOfTrails(), " Open Trails: " + JayPeak.getNumberOfTrailsOpen());
-
-        //     let trailsOpen = JayPeak.getNumberOfTrailsOpen();
-        //     let totalTrails = JayPeak.getNumberOfTrails();
-        //     let trailStatus = document.getElementById("trails");
-        //     trailStatus.innerHTML = "Trail Status: " + trailsOpen + " / " + totalTrails;
-
-        //     fetch('http://localhost:3000/jayPeak')
-        //         .then(r => r.json())
-        //         .then(data => {
-        //             console.log("24hr Snow:", data.last24);
-        //     })
-        //     .catch(error => console.error('Error fetching server data:', error));
-        // })
-        // .catch(error => console.error('Error fetching trail data:', error));
-    </script>
 </body>
 </html>
