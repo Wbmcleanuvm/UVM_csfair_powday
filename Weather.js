@@ -73,6 +73,22 @@ function getWeather(MountCords){
 
             let windS = liveVars.windSpeed.toFixed(1);
             listOfData.push(windS);
+
+            let snowIntensity = liveVars.snowIntensity.toFixed(1);
+            let rainIntensity = liveVars.rainIntensity.toFixed(1);
+            let isRaining, isSnowing = false;
+            if (snowIntensity > rainIntensity) {
+                isSnowing = true;
+                listOfData.push(isSnowing);
+            }  else 
+            {
+                    isRaining = true
+                    listOfData.push(isRaining);
+            }  
+
+            let weatherCode = liveVars.weatherCode;
+            listOfData.push(weatherCode);
+
             return listOfData;
             } catch (TypeError){
                 return 1;
