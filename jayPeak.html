@@ -97,7 +97,6 @@
             </div>  
             <div class="snowForecast">
                 <p id="windSpeed">Wind Speed: </p>
-                <p id="snowDepth">Snow Depth: </p>
                 <p id="expectedSnow">Snow or Rain: </p>
             </div>
 
@@ -159,9 +158,6 @@
 
                     const wSpeed = document.getElementById("windSpeed");
                     wSpeed.innerHTML = "Wind Speed: " + windS + " mph";
-
-                    const sd = document.getElementById("snowDepth");
-                    sd.innerHTML = "Snow Depth: " + snowDepth + " inches";
 
                     const sr = document.getElementById("expectedSnow");
                     if (conditions == 1) 
