@@ -3,6 +3,9 @@ script.src = 'https://code.jquery.com/jquery-3.6.3.min.js';
 document.getElementsByTagName('head')[0].appendChild(script);
 class weatherData{
     constructor(temp, feesLike, windSpeed){
+        this.temp = temp;
+        this.feelsLike = feelsLike;
+        this.windSpeed = windSpeed;
         
     }
 }
