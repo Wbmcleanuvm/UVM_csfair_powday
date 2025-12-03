@@ -186,41 +186,40 @@
             </div>
         </div>
 
-        <div class="Reviews">
-            <div class="trailStatus">
-                <p id="trails">Trail Status</p>
-            </div>
+       
+            <div id="reviewSection">
+                <ul>
+                      
+                </ul>
+            <script>
+                let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+                fetchTrails(trailsPath).then((trails) => {
+                    fetchReviews(reviewsPath).then((reviews) => {
+                        let jayReviews = new MountainReviews("Jay Peak", reviews);
+                        let reviewList = jayReviews.getListOfReviews();
+                        let Jay = new Mountain("Jay Peak", trails);
+                        let trailLst = Jay.getTrailList();
+                        let s = 1;
+                        let ul = $("#reviewSection").find("ul");[0];
+                        while (s < reviewList.length) {
+                            let review = reviewList[s];
+                            let reviewsTrail = review.getTrailName(s);
+                            let reviewName = review.getReviewerName(s);
+                            let reviewScore = review.getRating(s);
 
-            <div id="wrapper">
-                <script>
-                    let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
-                    fetchTrails(trailsPath).then((trails) => {
-                        fetchReviews(reviewsPath).then((reviews) => {
-                            let jayReviews = new MountainReviews("Jay Peak", reviews);
-                            let reviewList = jayReviews.getListOfReviews();
-                            let Jay = new Mountain("Jay Peak", trails);
-                            let trailLst = Jay.getTrailList();
-                            let s = 1;
-                            var wrapper = $('#wrapper'), container;
-                            while (s < reviewList.length) {
-                                let review = reviewList[s];
-                                let reviewsTrail = review.getTrailName(s);
-                                let reviewName = review.getReviewerName(s);
-                                let reviewScore = review.getRating(s);
+                            container = $('<li id="Review_item" class="container"></li>');
+                            ul.append(container);
+                            container.append('<dt class="item">'+ reviewsTrail + '</dt>');
+                            container.append('<dt class="userName">' + "Name: " + reviewName + '</dt>');
+                            container.append('<dt class="rating">' + "Rating: "  + reviewScore + '</dt>');
 
-                                container = $('<div id="Review_item" class="container"></div>');
-                                wrapper.append(container);
-                                container.append('<div class="item">' + reviewsTrail + '</div>');
-                                container.append('<div class="userName">' + reviewName + '</div>');
-                                container.append('<div class="rating">' + reviewScore + '</div>');
-
-                                s++;
-                            }
-                        });
+                            s++;
+                        }
                     });
-                </script>
-            </div>
+                });
+            </script>
         </div>
+        
     </div>
 </body>
 </html>
