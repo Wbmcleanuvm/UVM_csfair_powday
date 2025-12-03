@@ -28,7 +28,7 @@ class Review
     getReviewerName() {
         return this.reviewerName;
     }
-    getRating() {
+    getRating(){
         return this.rating;
     }
     getComments() {
@@ -86,4 +86,6 @@ async function fetchReviews(actionpath){
     } catch (error) {
         return console.error('Error fetching review data:', error);
     }
-        }
+}
+
+
