@@ -31,18 +31,18 @@ class Mountain
     }
     getTrailDifficulty(inx){
        let t = this.trails[inx];
-    const difficulty = t.getDifficulty();
+        const difficulty = t.getDifficulty();
 
-    const emojiMap = {
-        "Beginner": "🟢",
-        "Intermediate": "🔵",
-        "Advanced": "⚫"
-    };
+        const emojiMap = {
+            "Beginner": "🟢",
+            "Intermediate": "🔵",
+            "Advanced": "⚫"
+        };
 
-    const emoji = emojiMap[difficulty] || "🌲";
+        const emoji = emojiMap[difficulty] || "🌲";
 
-    t.setDifficulty(difficulty + emoji);
-    return t.getDifficulty();
+        t.setDifficulty(difficulty + emoji);
+        return t.getDifficulty();
 
     }
     getNumberOfTrails() 
@@ -139,7 +139,15 @@ class trail
         return this.#name;
     }
     getDifficulty(){
-        return this.#difficulty;
+
+        const emojiMap = {
+            "Beginner": "🟢",
+            "Intermediate": "🔵",
+            "Advanced": "⚫"
+        };
+        const emoji = emojiMap[difficulty] || "🌲";
+        this.difficulty = (difficulty + emoji);
+        return this.difficulty;
     }
     getStatus(){
         return this.#status;
