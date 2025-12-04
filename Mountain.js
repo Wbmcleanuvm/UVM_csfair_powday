@@ -19,7 +19,7 @@ class Mountain
         return this.trails;
     }
     addTrail(trail){
-        this.trails.push(t);
+        this.trails.push(trail);
     }
     getTrailName(inx){
         let t = this.trails[inx];
@@ -115,9 +115,11 @@ class trail
         this.numRatings = 0;
     }
     addRating(rating){
-        this.numRatings += 1;
-        let newRating = (this.rating + rating) / this.numRatings;
-        this.rating = newRating
+        rating = Number(rating);
+        const total = this.rating * this.numRatings; 
+        this.numRatings++;
+        this.rating = (total + rating) / this.numRatings;
+        this.rating = Math.round(this.rating * 10) / 10;
     }
     getRating(){
         return this.rating;

@@ -43,7 +43,6 @@
             <a href="boltonValley.html">Bolton Valley</a>
             <a href="sugarBush.html">SugarBush</a>
             <a href="smugglersNotch.html">SmugglersNotch</a>
-            <a href="reviewForm.html">Review</a>
         </div>
     </div>
 
@@ -150,7 +149,7 @@
             <div class="reviewSection">
                 <p id="leaveReview">Leave a Review </p>
                 <form method="POST" action="append.php">
-                    Name: <input type="text" name="fname" required minlength="2" maxlength="10" pattern="[A-Za-z]+" placeholder="Enter username">
+                    Name: <input id="fname" type="text" name="fname" required minlength="2" maxlength="10" pattern="[A-Za-z]+" placeholder="Enter username" required>
                     <br></br>
                     <p>Score: <input id="input" name="score" type="range" min="0.0" max="5.0" step="0.1" value="1"> Rating: <output id="value"></output></p>
 
@@ -163,12 +162,12 @@
                         });
                     </script>
 
-                    <input type="hidden" name="mnt" value="JayPeak">
+                    <input type="hidden" name="mnt" value="Bolton Valley">
                     <label for="Trail">Choose the trail</label>
                     <select name="Trail" id="Trail"></select>
 
                     <script>
-                        let trailsPath = 'ReadCsvData.php?action=trail&filename=boltonValleyTrails.csv'
+                        let trailsPath = 'ReadCsvData.php?action=trail&filename=BoltonValleyTrails.csv'
                         fetchTrails(trailsPath).then((trails) => {
                             let bolton = new Mountain("Bolton Valley", trails);
                             let trailNames = bolton.getAllTrailNames();
@@ -181,21 +180,33 @@
                         });
                     </script>
 
-                    <input type="button" value="Submit" onclick="this.form.submit()">
+                    <input type="button" value="Submit" onclick="validateReview(this.form)">
+
+                    <script>
+                        function validateReview(form) {
+                            const text = document.getElementById("fname").value.trim();
+                            if (text === "") {
+                                alert("Please enter a username!");
+                                return false; 
+                            }
+                            
+                            form.submit();
+                        }
+                    </script>
                 </form>
             </div>
         </div>
 
        
             <div id="reviewSection">
+                <h2>Reviews</h2>
                 <ul>
                       
                 </ul>
             <script>
-                let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+                let reviewsPath = 'ReadCsvData.php?action=review&filename=Bolton Valleyreview.csv';
                 fetchTrails(trailsPath).then((trails) => {
                     fetchReviews(reviewsPath).then((reviews) => {
-                        console.log("test");
                         let boltonReviews = new MountainReviews("Bolton Valley", reviews);
                         let reviewList = boltonReviews.getListOfReviews();
                         let Bolton = new Mountain("Bolton Valley", trails);
@@ -203,7 +214,7 @@
                         let boltonTrails = new Mountain("Bolton Valley", trails);
                         let revLst = boltonReviews.getListOfReviews();
                         let s = 1;
-                        let ul = $("#reviewSection").find("ul");[0];
+                        let ul = $("#reviewSection").find("ul");
                         while (s < reviewList.length) {
                             let review = reviewList[s];
                             let reviewsTrail = review.getTrailName();
@@ -222,7 +233,8 @@
                 });
             </script>
         </div>
-        <div id="TrailSection">
+        <div id="trailSection">
+            <h2>Trails</h2>
                 <ul>
                       
                 </ul>
@@ -235,20 +247,21 @@
                         let trailLst = Bolton.getTrailList();
                         let boltonTrails = new Mountain("Bolton Valley", trails);
                         let revLst = boltonReviews.getListOfReviews();
-                        /*let r = 1;
-                        while(r < revLst.length - 1){
-                            for(let i = 1; i < trailLst.length; i++){
+                        let r = 1;
+                        let safeGuard = 1;
+                        while(r < revLst.length){
+                            for(let i = 0; i < trailLst.length; i++){
                                 if(trailLst[i].getName() == revLst[r].getTrailName()){
-                                    let add = revLst[r].getRating();
-                                    trailLst[i].addRating(add);                               
-                                    
+                                    trailLst[i].addRating(revLst[r].getRating());
+                                    break;   
                                 }
                             }
                             r++
-                        }*/
+                            
+                        }
 
                         let s = 1;
-                        let ul = $("#reviewSection").find("ul");[0];
+                        let ul = $("#trailSection").find("ul");
                         while (s < trailLst.length) {
                             let trail = trailLst[s];
                             let trailName = trail.getName();
