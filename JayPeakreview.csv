@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Name,Rating,Mountain,TrailName
 pus,1,JayPeak,"Chalet Meadow"
 a,1,JayPeak,"Chalet Meadow"
@@ -14,3 +15,6 @@ a,2.3,JayPeak,"Heaven's Road"
 test,1,JayPeak,"Chalet Meadow"
 tets,1,JayPeak,"Heaven's Road"
 lit,1,JayPeak,"Chalet Meadow"
+=======
+Name,Rating,Mountain,TrailNamezach,5,JayPeak,"Black Snake"
+>>>>>>> 493262a5c71a17afab83f99b205dd5e2271c9d81

@@ -317,3 +317,28 @@ ul{
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .mapHighlight {
+        height: 45vh;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+        margin: 10px;
+    }
+
+    #temp {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .mapHighlight {
+        height: 40vh;
+    }
+}
