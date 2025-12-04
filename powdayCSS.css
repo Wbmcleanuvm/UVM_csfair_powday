@@ -132,6 +132,12 @@ input[type=submit] {
     gap: 5px;
     align-items: start;
 }
+#LiveCam{
+    padding: 5px 0px;
+    border-color: rgb(0, 113, 105) ;
+    border-radius: 10px;
+    
+}
 
 
 h1 {
