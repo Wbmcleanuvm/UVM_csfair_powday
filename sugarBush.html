@@ -210,6 +210,53 @@
                 });
             </script>
         </div>
+        <div id="TrailSection">
+                <ul>
+                      
+                </ul>
+            <script>
+                fetchTrails(trailsPath).then((trails) => {
+                    fetchReviews(reviewsPath).then((reviews) => {
+                        console.log(reviews);
+                        let jayReviews = new MountainReviews("SugarBush", reviews);
+                        let reviewList = jayReviews.getListOfReviews();
+                        let Jay = new Mountain("Jay Peak", trails);
+                        let trailLst = Jay.getTrailList();
+                        let jayTrails = new Mountain("Jay Peak", trails);
+                        let revLst = jayReviews.getListOfReviews();
+                        let r = 1;
+                        let safeGuard = 1;
+                        while(r < revLst.length - 1){
+                            for(let i = 1; i < trailLst.length; i++){
+                                if(trailLst[i].getName() == revLst[r].getTrailName()){
+                                    let add = revLst[r].getRating();
+                                    trailLst[i].addRating(add);     
+                                }
+                            }
+                            r++
+                            
+                        }
+
+                        let s = 1;
+                        let ul = $("#reviewSection").find("ul");[0];
+                        while (s < trailLst.length) {
+                            let trail = trailLst[s];
+                            let trailName = trail.getName();
+                            let trailDifficulty = trail.getDifficulty();
+                            let reviewScore = trail.getRating();
+                            container = $('<li id="Review_item" class="container"></li>');
+                            ul.append(container);
+                            container.append('<dt class="item">'+ trailName + '</dt>');
+                            container.append('<dt class="userName">' + "Name: " + trailDifficulty + '</dt>');
+                            container.append('<dt class="rating">' + "Rating: "  + reviewScore + '</dt>');
+
+                            s++;
+                        }
+                    });
+                }).catch("Error Fetching: ", Error);
+            </script>
+        </div>
+        
         
     </div>
 </body>
