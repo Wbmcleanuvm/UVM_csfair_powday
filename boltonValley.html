@@ -192,7 +192,7 @@
                       
                 </ul>
             <script>
-                let reviewsPath = 'ReadCsvData.php?action=review&filename=JayPeakreview.csv';
+                let reviewsPath = 'ReadCsvData.php?action=review&filename=BoltonValleyreview.csv';
                 fetchTrails(trailsPath).then((trails) => {
                     fetchReviews(reviewsPath).then((reviews) => {
                         console.log("test");
@@ -235,7 +235,7 @@
                         let trailLst = Bolton.getTrailList();
                         let boltonTrails = new Mountain("Bolton Valley", trails);
                         let revLst = boltonReviews.getListOfReviews();
-                        /*let r = 1;
+                        let r = 1;
                         while(r < revLst.length - 1){
                             for(let i = 1; i < trailLst.length; i++){
                                 if(trailLst[i].getName() == revLst[r].getTrailName()){
@@ -245,7 +245,7 @@
                                 }
                             }
                             r++
-                        }*/
+                        }
 
                         let s = 1;
                         let ul = $("#reviewSection").find("ul");[0];
