@@ -13,9 +13,30 @@
     <title>UVM POW DAY</title>
     
     <link rel="stylesheet" href="powdayCSS.css">
+
+    <style> 
+        body {
+            background-image: url('Images/20110827_winter_campus-12.webp');
+            background-size: cover;
+            background-clip: no-repeat;
+            margin: 0;
+        }
+
+        body::before 
+        {
+            content: ""; /* Must add content or pseudo element wont apperar */
+            background: rgba(0, 0, 0, 0.453);
+            position: absolute;
+            z-index: 0; /* put on different axis to add filter */
+            inset: 0;
+        }
+    </style>
 </head>
 <body>
     <div class="navbackground">
+        <h1>
+            UVM POW DAY
+        </h1>
         <div class="navbar">
             <a href="jayPeak.html">Jay Peak</a>
             <a href="boltonValley.html">Bolton Valley</a>
@@ -25,13 +46,9 @@
     </div>
 
     <div class="infoBox">
-        <h1 style="padding: 10px; margin: 10px 0px; text-align: center;">
-            UVM POW DAY
-        </h1>
 
         <p class="infoBox-Item">
-            <!-- is a website made for UVM students who ski in the Green Mountains of Northern Vermont. Our page gives live updates for snow conditions as well as trailmaps. 
-            After skiing or snowboarding at your favourite mountains, leave a review on mountains or individual to grow our collection of ratings and reviews! -->
+            Welcome to UVM POW DAY! Here you can find information about the best ski resorts in Vermont including Jay Peak, Bolton Valley, Sugarbush, and Smugglers Notch. 
         </p>
     </div>
 
