@@ -248,24 +248,16 @@
                         let smuggsTrails = new Mountain("Smugglers Notch", trails);
                         let revLst = smuggsReviews.getListOfReviews();
                         let r = 1;
-<<<<<<< HEAD
                         let safeGuard = 1;
                         while(r < revLst.length){
                             for(let i = 0; i < trailLst.length; i++){
-=======
-                        while(r < revLst.length - 1){
-                            for(let i = 1; i < trailLst.length; i++){
->>>>>>> 3158018cac03e9b8bb42698245654c2aec48fb31
                                 if(trailLst[i].getName() == revLst[r].getTrailName()){
                                     trailLst[i].addRating(revLst[r].getRating());
                                     break;   
                                 }
                             }
                             r++
-<<<<<<< HEAD
                             
-=======
->>>>>>> 3158018cac03e9b8bb42698245654c2aec48fb31
                         }
 
                         let s = 1;

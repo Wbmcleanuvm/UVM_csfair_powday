@@ -220,7 +220,7 @@ h1 {
 .infoBox-Item {
     padding: 5px;
     margin: 30px 5px;
-    text-align: ;
+    text-align: center;
     font-size: clamp(.1rem, 5vw, 3.5rem);
     font-family: Brunson;
     color: aliceblue;

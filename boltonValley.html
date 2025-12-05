@@ -198,17 +198,13 @@
         </div>
 
        
-            <div id="reviewSection">
+        <div id="reviewSection">
                 <h2>Reviews</h2>
                 <ul>
                       
                 </ul>
             <script>
-<<<<<<< HEAD
                 let reviewsPath = 'ReadCsvData.php?action=review&filename=Bolton Valleyreview.csv';
-=======
-                let reviewsPath = 'ReadCsvData.php?action=review&filename=BoltonValleyreview.csv';
->>>>>>> 3158018cac03e9b8bb42698245654c2aec48fb31
                 fetchTrails(trailsPath).then((trails) => {
                     fetchReviews(reviewsPath).then((reviews) => {
                         let boltonReviews = new MountainReviews("Bolton Valley", reviews);
@@ -252,24 +248,16 @@
                         let boltonTrails = new Mountain("Bolton Valley", trails);
                         let revLst = boltonReviews.getListOfReviews();
                         let r = 1;
-<<<<<<< HEAD
                         let safeGuard = 1;
                         while(r < revLst.length){
                             for(let i = 0; i < trailLst.length; i++){
-=======
-                        while(r < revLst.length - 1){
-                            for(let i = 1; i < trailLst.length; i++){
->>>>>>> 3158018cac03e9b8bb42698245654c2aec48fb31
                                 if(trailLst[i].getName() == revLst[r].getTrailName()){
                                     trailLst[i].addRating(revLst[r].getRating());
                                     break;   
                                 }
                             }
                             r++
-<<<<<<< HEAD
                             
-=======
->>>>>>> 3158018cac03e9b8bb42698245654c2aec48fb31
                         }
 
                         let s = 1;
@@ -292,9 +280,9 @@
                 });
             </script>
         </div>
-        <div id=" LiveCam">
+        <!-- <div id=" LiveCam">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/VX9ANOUYO1k?si=oiO6crQFqynW-Wlc" title="YouTube video player" frameborder="20" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        </div> -->
         
     </div>
 </body>
